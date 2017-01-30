@@ -182,7 +182,6 @@ Ahora no sabría dibujar, ni siquiera hacer una línea con el lápiz; y, sin emb
         contentType: 'text/plain; charset=UTF-8', 
         dataType : 'text', 
         type: 'GET', 
-        data: data,
         error: function (jqXHR, textStatus, errorThrown) {
 	      var respdata = {success: 'false', error: errorThrown, status: textStatus, jqXHR: jqXHR};
           //callback(data, respdata);
