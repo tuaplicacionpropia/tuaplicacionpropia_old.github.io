@@ -218,6 +218,7 @@ var AppUI = React.createClass({
   _renderTopMenu: function () {
     var result = null;
     var menu = this.state.menu; //dao.loadMenu();
+    console.log('posts = ' + menu[0].posts);
     var length = menu != null ? menu.length : 0;
     var options = [];
     for (var i = 0; i < length; i++) {
