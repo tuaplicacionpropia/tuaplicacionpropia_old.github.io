@@ -179,7 +179,9 @@ Utils = (function() {
       },
       success: function (respdata, textStatus, jqXHR) {
         var targetValue = Hjson.parse(respdata);
-        argApp.setState({"" + argTarget: targetValue});
+        var newState = {}
+        newState[argTarget] = targetValue;
+        argApp.setState(newState);
         argApp.forceUpdate();
       }
     });
