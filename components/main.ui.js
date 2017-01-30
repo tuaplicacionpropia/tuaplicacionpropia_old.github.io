@@ -1,0 +1,1 @@
+ReactDOM.render(React.createElement(AppUI, { title: "Registro Entrada/Salida" }), document.getElementById('main'));
