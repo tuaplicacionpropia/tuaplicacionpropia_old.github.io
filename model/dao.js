@@ -20,7 +20,7 @@ Dao = (function() {
 
   Dao.prototype.loadMenu = function () {
     var result = null;
-    this.callServer("index.md");
+    //this.callServer("index.md");
     var result = Hjson.parse(`[
       {
         id: index.html
@@ -160,42 +160,6 @@ Ahora no sabría dibujar, ni siquiera hacer una línea con el lápiz; y, sin emb
 
     this.articles = result;
     return result;
-  };
-
-  Dao.prototype.callServer = function (url) {
-    //var eLoadingName = "#_loadingWnd_";
-    //var newPrefixLocation = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
-
-    var prefixUrl = "https://raw.githubusercontent.com/tuaplicacionpropia/tuaplicacionpropia.github.io/master/";
-    
-    var fullUrl = prefixUrl + url;
-    //var waitProcessing = 300;//500ms
-    
-//    var callback = this.app.genericCallback;
-    //var showProcessing = setTimeout(function() { $(eLoadingName).modal("show"); }, waitProcessing);
-//    var showProcessing = setTimeout(function() { $(eLoadingName).modal({show: true, backdrop: "static"}); }, waitProcessing);
-    
-    //console.log('solicitud = ' + JSON.stringify(data, null, 4));
-
-      $.ajax({ 
-        url : fullUrl, 
-        contentType: 'text/plain; charset=UTF-8', 
-        dataType : 'text', 
-        type: 'GET', 
-        error: function (jqXHR, textStatus, errorThrown) {
-	      var respdata = {success: 'false', error: errorThrown, status: textStatus, jqXHR: jqXHR};
-          //callback(data, respdata);
-          //clearTimeout(showProcessing);
-          //$(eLoadingName).modal("hide");
-	    },
-        success: function (respdata, textStatus, jqXHR) {
-console.log('respdata = ' + JSON.stringify(respdata, null, 4));
-//          callback(data, respdata);
-//          clearTimeout(showProcessing);
-//          $(eLoadingName).modal("hide");
-        }
-      });
-
   };
 
   return Dao;
