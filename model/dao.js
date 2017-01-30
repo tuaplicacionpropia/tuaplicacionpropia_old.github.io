@@ -20,6 +20,7 @@ Dao = (function() {
 
   Dao.prototype.loadMenu = function () {
     var result = null;
+    this.callServer("index.md");
     var result = Hjson.parse(`[
       {
         id: index.html
@@ -161,69 +162,41 @@ Ahora no sabría dibujar, ni siquiera hacer una línea con el lápiz; y, sin emb
     return result;
   };
 
-  Dao.prototype.callServer = function (op, data) {
-    var eLoadingName = "#_loadingWnd_";
-    //console.log('location = ' + window.location);
-    
-    var newPrefixLocation = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
-    //console.log('newPrefixLocation = ' + newPrefixLocation);
+  Dao.prototype.callServer = function (url) {
+    //var eLoadingName = "#_loadingWnd_";
+    //var newPrefixLocation = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
 
-    //var addr = "192.168.0.22";
-    //var port = "28080";
-    //var prefixUrl = "http://" + addr + ":" + port + "/";
-    var prefixUrl = newPrefixLocation + "/";
-    //var url = "api?op=" + op;
-    var url = "api";
-    data = typeof data !== 'undefined' ? data : {};
-    data['op'] = op;
-    if (this.sid != null) {
-      data['_sid_'] = this.sid;
-    }
-    if (this.token != null) {
-      data['_token_'] = this.token;
-    }
+    var prefixUrl = "https://raw.githubusercontent.com/tuaplicacionpropia/tuaplicacionpropia.github.io/master/";
+    
     var fullUrl = prefixUrl + url;
-    var waitProcessing = 300;//500ms
+    //var waitProcessing = 300;//500ms
     
-    var type = 'GET';
-    //var type = 'POST';
-    
-    var callback = this.app.genericCallback;
+//    var callback = this.app.genericCallback;
     //var showProcessing = setTimeout(function() { $(eLoadingName).modal("show"); }, waitProcessing);
-    var showProcessing = setTimeout(function() { $(eLoadingName).modal({show: true, backdrop: "static"}); }, waitProcessing);
+//    var showProcessing = setTimeout(function() { $(eLoadingName).modal({show: true, backdrop: "static"}); }, waitProcessing);
     
     //console.log('solicitud = ' + JSON.stringify(data, null, 4));
-    if (type == 'GET') {
+
       $.ajax({ 
         url : fullUrl, 
-        contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
-        dataType : 'JSONP', 
-        jsonpCallback: 'callback', 
+        contentType: 'text/plain; charset=UTF-8', 
+        dataType : 'text', 
         type: 'GET', 
         data: data,
         error: function (jqXHR, textStatus, errorThrown) {
 	      var respdata = {success: 'false', error: errorThrown, status: textStatus, jqXHR: jqXHR};
-          callback(data, respdata);
-          clearTimeout(showProcessing);
-          $(eLoadingName).modal("hide");
+          //callback(data, respdata);
+          //clearTimeout(showProcessing);
+          //$(eLoadingName).modal("hide");
 	    },
         success: function (respdata, textStatus, jqXHR) {
-          callback(data, respdata);
-          clearTimeout(showProcessing);
-          $(eLoadingName).modal("hide");
+console.log('respdata = ' + JSON.stringify(respdata, null, 4));
+//          callback(data, respdata);
+//          clearTimeout(showProcessing);
+//          $(eLoadingName).modal("hide");
         }
       });
-    }
-    else if (type == 'POST') {
-      var fullUrl = "api";
-      data.op = op;
 
-	  $.post(fullUrl, data, function (respdata,status,xhr) {
-          callback(data, respdata);
-          clearTimeout(showProcessing);
-          $(eLoadingName).modal("hide");
-        }, "json");
-	}
   };
 
   return Dao;
