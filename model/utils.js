@@ -159,6 +159,17 @@ Utils = (function() {
     return result;
   };
 
+  Utils.slugify = function (text) {
+    var result = null;
+    result = text.toString().toLowerCase();
+    result = result.replace(/\s+/g, '-');     // Replace spaces with -
+    result = result.replace(/[^\w\-]+/g, ''); // Remove all non-word chars
+    result = result.replace(/\-\-+/g, '-');   // Replace multiple - with single -
+    result = result.replace(/^-+/, '');       // Trim - from start of text
+    result = result.replace(/-+$/, '');       // Trim - from end of text
+    return result;
+  };
+
   return Utils;
 
 })();

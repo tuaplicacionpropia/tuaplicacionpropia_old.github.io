@@ -4,6 +4,7 @@ var AppUI = React.createClass({
 
   componentWillMount: function () {
     var self = this;
+    self.setState({ complete: false });
     var dao = Dao.createNew(this);
     dao.loadHome();
     this.setState({ dao: dao });

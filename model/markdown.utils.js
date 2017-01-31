@@ -11,7 +11,13 @@ function md_images (nodes) {
 }
 
 function md_anchors (nodes) {
-  $(nodes).find("a").attr('target', '_blank');
+  //$(nodes).find("a").attr('target', '_blank');
+  var array = $(nodes).filter("a").find("*");
+  $.each(array, function(i, val) {
+    console.log('iiiiiiiiiiiiiiii = ' + i);
+    console.log('valvalvalvalvalvalval = ' + val);
+    $(this).attr('target', '_blank');
+  });
 }
 
 showdown.extension('adaptmd', function () {

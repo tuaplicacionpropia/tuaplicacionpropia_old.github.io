@@ -310,7 +310,13 @@ var ArticleUI = React.createClass({
 
   _renderMoldFull_Comments: function () {
     var result = null;
-    var result = newDisqusUI({ pageId: "miprimerapagina" });
+
+    var article = this.props.item;
+    var title = article.getTitle();
+    var title = title != null ? title : "";
+
+    var pageId = Utils.slugify(title);
+    var result = newDisqusUI({ "pageId": pageId });
     return result;
   },
 
