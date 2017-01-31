@@ -8,6 +8,7 @@
     post3.md
     post4.md
     post5.md
+    posts/javascript/intro_reactjs.md
   ]
  }
  {

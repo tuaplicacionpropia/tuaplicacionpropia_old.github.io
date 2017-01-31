@@ -10,6 +10,10 @@ function md_images (nodes) {
 //      $(_nodes_).filter('p img').addClass("img-responsive");
 }
 
+function md_anchors (nodes) {
+  $(nodes).find("a").attr('target', '_blank');
+}
+
 showdown.extension('adaptmd', function () {
   return [{
     type: "output",
@@ -19,6 +23,7 @@ showdown.extension('adaptmd', function () {
 
       md_paragraphs(_nodes_);      
       md_images(_nodes_);      
+      md_anchors(_nodes_);
 
       $(_nodes_).each(function() {
         if (!(this.nodeName == "#text")) {

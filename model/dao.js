@@ -19,6 +19,20 @@ Dao = (function() {
   };
 
 
+  Dao.prototype.loadHome = function () {
+    var self = this;
+    self.app.setState({complete: false});
+    self.loadObject('index.md', 'menu', function () {
+
+      var posts = self.app.state.menu[0].posts;
+      self.loadArray(posts, 'posts', function () {
+        self.app.setState({complete: true});
+      });
+    });
+  };
+
+
+
 
   Dao.prototype.loadObject = function (url, target, thenFn) {
     var prefixUrl = "https://raw.githubusercontent.com/tuaplicacionpropia/tuaplicacionpropia.github.io/master/";
