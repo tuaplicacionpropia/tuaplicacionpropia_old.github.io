@@ -3,6 +3,7 @@
   id: index.html
   title: Inicio2
   posts: [
+    posts/www/github_api_rest.md
     post1.md
     post2.md
     post3.md
