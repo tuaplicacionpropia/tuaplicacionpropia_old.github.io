@@ -200,6 +200,11 @@ var AppUI = React.createClass({
     //alert(menuitem);
   },
 
+  _openHome: function (menuitem) {
+    this.state.dao.selectMenu(null);
+    //alert(menuitem);
+  },
+
   _renderMenuitemLeaf: function (menuitem) {
     return React.createElement(
       "li",
@@ -255,6 +260,15 @@ var AppUI = React.createClass({
     var result = React.createElement(
       "ul",
       { className: "nav navbar-nav" },
+      React.createElement(
+        "li",
+        null,
+        React.createElement(
+          "a",
+          { href: "#", onClick: this._openHome.bind(this) },
+          "Inicio"
+        )
+      ),
       options
     );
     return result;
