@@ -48,7 +48,7 @@ Dao = (function() {
 //list.posts[0]
 
         var arrayTarget = argTarget.split(".");
-        var src = this.state;
+        var src = argApp.state;
         src = (src != null ? src : {});
         var targetLength = arrayTarget.length;
         var newState = null;
@@ -77,7 +77,7 @@ Dao = (function() {
 
           if (i == 0) {
             newState = {};
-            newState[itemTargetName] = (targetLength == 1 ? targetValue : src);
+            newState[itemTargetName] = (targetLength == 1 && itemTargetIndex == null ? targetValue : src);
           }
         }
 
