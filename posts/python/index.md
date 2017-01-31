@@ -1,4 +1,4 @@
-title: Github - API REST
+title: Python - Intro
 mainImage: github_commits_logo_0.png
 content: 
  '''

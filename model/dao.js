@@ -18,8 +18,59 @@ Dao = (function() {
     return result;
   };
 
+  Dao.prototype.selectMenu = function (menu) {
+    var self = this;
+    self.app.setState({complete: false});
+
+    self.loadMetaData(menu, "infoMenu", function () {
+      var prefix = (menu != null ? menu + '/' : '');
+
+      var infoMenu = self.app.state.infoMenu;
+      var length = (infoMenu != null ? infoMenu.length : 0);
+      var menus = [];
+      var articles = [];
+      for (var i = 0; i < length; i++) {
+        var itemMenu = infoMenu[i];
+        if (itemMenu['type'] == 'dir') {
+          var menu2Add = {};
+          menu2Add['id'] = itemMenu['path'].substring("posts/".length);
+          menu2Add['title'] =  Utils.capFirst(itemMenu['name']);
+          menus.push(menu2Add);
+        }
+        else if (itemMenu['type'] == 'file' && itemMenu['name'].endsWith('.md')) {
+          var itemArticle = prefix + itemMenu['name'];
+          articles.push(itemArticle);
+        }
+      }
+      if (menu == null) {
+        self.app.setState({'menu': menus});
+      }
+
+      self.app.setState({'posts': null});
+      if (articles.length > 0) {
+        self.loadArray(articles, 'posts', function () {
+          self.app.setState({complete: true});
+        });
+      }
+      self.app.setState({complete: true});
+    });
+/*
+    self.loadObject('index.md', 'menu', function () {
+      var posts = self.app.state.menu[0].posts;
+      self.loadArray(posts, 'posts', function () {
+        self.app.setState({complete: true});
+      });
+    });
+*/
+  };
 
   Dao.prototype.loadHome = function () {
+    var self = this;
+    self.selectMenu(null);
+  };
+
+
+  Dao.prototype.loadHome2 = function () {
     var self = this;
     self.app.setState({complete: false});
 

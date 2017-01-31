@@ -195,13 +195,18 @@ var AppUI = React.createClass({
     return result;
   },
 
+  _openMenu: function (menuitem) {
+    this.state.dao.selectMenu(menuitem.id);
+    //alert(menuitem);
+  },
+
   _renderMenuitemLeaf: function (menuitem) {
     return React.createElement(
       "li",
       null,
       React.createElement(
         "a",
-        { href: menuitem.id },
+        { href: "#", onClick: this._openMenu.bind(this, menuitem) },
         menuitem.title
       )
     );
