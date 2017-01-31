@@ -22,17 +22,105 @@ Dao = (function() {
   Dao.prototype.loadHome = function () {
     var self = this;
     self.app.setState({complete: false});
-    self.loadObject('index.md', 'menu', function () {
 
+    self.loadMetaData(null, "infoMenu", function () {
+      var infoMenu = self.app.state.infoMenu;
+      var length = (infoMenu != null ? infoMenu.length : 0);
+      var menus = [];
+      for (var i = 0; i < length; i++) {
+        var itemMenu = infoMenu[i];
+        if (itemMenu['type'] == 'dir') {
+          var menu2Add = {};
+          menu2Add['id'] = itemMenu['path'].substring("posts/".length);
+          menu2Add['title'] =  Utils.capFirst(itemMenu['name']);
+          menus.push(menu2Add);
+        }
+      }
+      self.app.setState({'menu': menus, 'posts': []});
+      self.app.setState({complete: true});
+    });
+/*
+    self.loadObject('index.md', 'menu', function () {
       var posts = self.app.state.menu[0].posts;
       self.loadArray(posts, 'posts', function () {
         self.app.setState({complete: true});
       });
     });
+*/
   };
 
 
+  Dao.prototype.loadMetaData = function (url, target, thenFn) {
+    var prefixUrl = "https://api.github.com/repos/tuaplicacionpropia/tuaplicacionpropia.github.io/contents/posts/";
+    url = (url != null ? url : "");
+    var fullUrl = prefixUrl + url;
+    
+    var argApp = this.app;
+    var argTarget = target;
+    var remote_error = argApp._remote_error;
 
+    $.ajax({ 
+      url : fullUrl, 
+      contentType: 'text/plain; charset=UTF-8', 
+      dataType : 'text', 
+      type: 'GET', 
+      error: function (jqXHR, textStatus, errorThrown) {
+        var respdata = {success: 'false', error: errorThrown, status: textStatus, jqXHR: jqXHR};
+        remote_error(respdata);
+        if (thenFn != null) {
+          thenFn();
+        }
+      },
+      success: function (respdata, textStatus, jqXHR) {
+        var targetValue = JSON.parse(respdata);
+//list
+//list.posts
+//list.posts[0]
+
+        var arrayTarget = argTarget.split(".");
+        var src = argApp.state;
+        src = (src != null ? src : {});
+        var targetLength = arrayTarget.length;
+        var newState = null;
+        for (var i = 0; i < targetLength; i++) {
+          var itemTarget = arrayTarget[i];
+
+          var itemTargetIdxStart = itemTarget.indexOf("[");
+          var itemTargetIdxEnd = itemTarget.indexOf("]");
+          var itemTargetName = (itemTargetIdxStart < 0 ? itemTarget : itemTarget.substring(0, itemTargetIdxStart));
+          var itemTargetIndex = (itemTargetIdxStart >= 0 && itemTargetIdxEnd >= 0 ? itemTarget.substring(itemTargetIdxStart + 1, itemTargetIdxEnd) : null);
+
+          if (typeof src[itemTargetName] === "undefined" || src[itemTargetName] === null) {
+            var src = (itemTargetIndex != null ? [] : {});
+          }
+          else {
+            var src = src[itemTargetName];
+          }
+
+          if (itemTargetIndex != null) {
+            var initLength = src.length;
+            for (var k = initLength; k <= itemTargetIndex; k++) {
+              src.push(null);
+            }
+            src[itemTargetIndex] = targetValue;
+          }
+
+          if (i == 0) {
+            newState = {};
+            newState[itemTargetName] = (targetLength == 1 && itemTargetIndex == null ? targetValue : src);
+          }
+        }
+
+        if (newState != null) {
+          argApp.setState(newState);
+          argApp.forceUpdate();
+        }
+        if (thenFn != null) {
+          thenFn();
+        }
+      }
+    });
+  };
 
   Dao.prototype.loadObject = function (url, target, thenFn) {
     var prefixUrl = "https://raw.githubusercontent.com/tuaplicacionpropia/tuaplicacionpropia.github.io/master/";

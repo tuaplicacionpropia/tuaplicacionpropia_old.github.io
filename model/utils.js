@@ -162,11 +162,18 @@ Utils = (function() {
   Utils.slugify = function (text) {
     var result = null;
     result = text.toString().toLowerCase();
+    result = result.replace(/\//g, '-');      // Replace / with -
     result = result.replace(/\s+/g, '-');     // Replace spaces with -
     result = result.replace(/[^\w\-]+/g, ''); // Remove all non-word chars
     result = result.replace(/\-\-+/g, '-');   // Replace multiple - with single -
     result = result.replace(/^-+/, '');       // Trim - from start of text
     result = result.replace(/-+$/, '');       // Trim - from end of text
+    return result;
+  };
+
+  Utils.capFirst = function (text) {
+    var result = null;
+    result = text.charAt(0).toUpperCase() + text.slice(1);
     return result;
   };
 
