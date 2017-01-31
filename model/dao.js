@@ -131,6 +131,20 @@ Dao = (function() {
 
   Dao.prototype.listArticles = function() {
     var result = null;
+    result = [];
+
+    var posts = this.app.state.posts;
+    var length = (posts != null ? posts.length : 0);
+    for (var i = 0; i < length; i++) {
+      var post = posts[i];
+      result.push(Article.createNew(post));
+    }
+
+    return result;
+  }
+
+  Dao.prototype.listArticles2 = function() {
+    var result = null;
     var result = [];
 /*
     var hjsonText = `
