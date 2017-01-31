@@ -54,7 +54,7 @@ var AppUI = React.createClass({
             React.createElement(
               "h1",
               null,
-              "BUSINESS BLOG"
+              "TU APLICACI\xD3N PROPIA"
             )
           )
         ),
@@ -79,7 +79,7 @@ var AppUI = React.createClass({
               null,
               React.createElement(
                 "a",
-                { href: "#", className: "facebook" },
+                { href: "https://www.facebook.com/tuaplicacionpropia", target: "_blank", className: "facebook" },
                 " "
               )
             ),
@@ -88,7 +88,7 @@ var AppUI = React.createClass({
               null,
               React.createElement(
                 "a",
-                { href: "#", className: "facebook twitter" },
+                { href: "https://twitter.com/tuaplicacionpro", target: "_blank", className: "facebook twitter" },
                 " "
               )
             ),
@@ -97,7 +97,7 @@ var AppUI = React.createClass({
               null,
               React.createElement(
                 "a",
-                { href: "#", className: "facebook chrome" },
+                { href: "https://plus.google.com/112667009554417038338?hl=es", target: "_blank", className: "facebook chrome" },
                 " "
               )
             ),
@@ -106,7 +106,7 @@ var AppUI = React.createClass({
               null,
               React.createElement(
                 "a",
-                { href: "#", className: "facebook in" },
+                { href: "https://www.linkedin.com/in/jes%C3%BAs-mar%C3%ADa-ramos-saky-835871121/", target: "_blank", className: "facebook in" },
                 " "
               )
             ),
@@ -133,7 +133,7 @@ var AppUI = React.createClass({
               null,
               React.createElement(
                 "a",
-                { href: "#", className: "facebook yout" },
+                { href: "https://www.youtube.com/channel/UCZ0Y_Mh6iRsNp3jt5lbL7qg", target: "_blank", className: "facebook yout" },
                 " "
               )
             ),
