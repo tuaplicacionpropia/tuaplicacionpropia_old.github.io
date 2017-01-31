@@ -17,14 +17,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="keywords" content="Business_Blog Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 
-
-<!-- Update your html tag to include the itemscope and itemtype attributes. -->
+<!--
+http://webmasters.stackexchange.com/questions/25581/how-does-google-plus-select-an-image-from-a-shared-link
+http://stackoverflow.com/questions/6676658/share-link-on-google
+https://developers.google.com/+/web/share/#sharelink
+https://plus.google.com/share?url=tuaplicacionpropia.com
+-->
+<!--
 <html itemscope itemtype="http://schema.org/Article">
-
-<!-- Add the following three tags inside head. -->
 <meta itemprop="name" content="My Cool Article">
 <meta itemprop="description" content="This is the greatest site ever">
 <meta itemprop="image" content="https://i.blogs.es/9b5981/holographic-universe/1366_2000.jpg">
+-->
+
 
     <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -74,6 +79,12 @@ https://github.com/chjj/marked/
 
   </head>
   <body class="index-page">
+<body itemscope itemtype="http://schema.org/Product">
+  <h1 itemprop="name">Shiny Trinket</h1>
+  <img itemprop="image" src="https://i.blogs.es/9b5981/holographic-universe/1366_2000.jpg"></img>
+  <p itemprop="description">Shiny trinkets are shiny.</p>
+</body>
+
     <div id="main">
     </div>
 
