@@ -4,9 +4,17 @@ var AppUI = React.createClass({
 
   componentWillMount: function () {
     var self = this;
+    console.log('location = ' + window.location.href);
     self.setState({ complete: false });
     var dao = Dao.createNew(this);
-    dao.loadHome();
+    //dao.loadHome();
+    //dao.selectMenu("javascript");
+
+    //file:///home/jmramoss/almacen/webtuaplicacionpropia/index.html?www/github_api_rest.md
+    var page2Load = "www/github_api_rest.md";
+    dao.loadObject(page2Load, "post2Open", function () {
+      self._openPost(Article.createNew(self.state.post2Open));
+    });
     this.setState({ dao: dao });
   },
 
