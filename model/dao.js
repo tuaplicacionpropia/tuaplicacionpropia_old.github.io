@@ -18,6 +18,91 @@ Dao = (function() {
     return result;
   };
 
+
+
+  Dao.prototype.loadObject = function (url, target, thenFn) {
+    var prefixUrl = "https://raw.githubusercontent.com/tuaplicacionpropia/tuaplicacionpropia.github.io/master/";
+    
+    var fullUrl = prefixUrl + url;
+    
+    var argApp = this.app;
+    var argTarget = target;
+    var remote_error = argApp._remote_error;
+
+    $.ajax({ 
+      url : fullUrl, 
+      contentType: 'text/plain; charset=UTF-8', 
+      dataType : 'text', 
+      type: 'GET', 
+      error: function (jqXHR, textStatus, errorThrown) {
+        var respdata = {success: 'false', error: errorThrown, status: textStatus, jqXHR: jqXHR};
+        remote_error(respdata);
+        if (thenFn != null) {
+          thenFn();
+        }
+      },
+      success: function (respdata, textStatus, jqXHR) {
+        var targetValue = Hjson.parse(respdata);
+//list
+//list.posts
+//list.posts[0]
+
+        var arrayTarget = argTarget.split(".");
+        var src = this.state;
+        src = (src != null ? src : {});
+        var targetLength = arrayTarget.length;
+        var newState = null;
+        for (var i = 0; i < targetLength; i++) {
+          var itemTarget = arrayTarget[i];
+
+          var itemTargetIdxStart = itemTarget.indexOf("[");
+          var itemTargetIdxEnd = itemTarget.indexOf("]");
+          var itemTargetName = (itemTargetIdxStart < 0 ? itemTarget : itemTarget.substring(0, itemTargetIdxStart));
+          var itemTargetIndex = (itemTargetIdxStart >= 0 && itemTargetIdxEnd >= 0 ? itemTarget.substring(itemTargetIdxStart + 1, itemTargetIdxEnd) : null);
+
+          if (typeof src[itemTargetName] === "undefined" || src[itemTargetName] === null) {
+            var src = (itemTargetIndex != null ? [] : {});
+          }
+          else {
+            var src = src[itemTargetName];
+          }
+
+          if (itemTargetIndex != null) {
+            var initLength = src.length;
+            for (var k = initLength; k <= itemTargetIndex; k++) {
+              src.push(null);
+            }
+            src[itemTargetIndex] = targetValue;
+          }
+
+          if (i == 0) {
+            newState = {};
+            newState[itemTargetName] = (targetLength == 1 ? targetValue : src);
+          }
+        }
+
+        if (newState != null) {
+          argApp.setState(newState);
+          argApp.forceUpdate();
+        }
+        if (thenFn != null) {
+          thenFn();
+        }
+      }
+    });
+  };
+
+  Dao.prototype.loadArray = function (array, target) {
+    var length = (array != null ? array.length : 0);
+    for (var i = 0; i < length; i++) {
+      var itemUrl = array[i];
+      var newTarget = target + "[" + i + "]";
+      this.loadObject(itemUrl, newTarget);
+    }
+  };
+
+
+
   Dao.prototype.loadMenu = function () {
     var result = null;
     //this.callServer("index.md");

@@ -159,34 +159,6 @@ Utils = (function() {
     return result;
   };
 
-  Utils.loadHjsonData = function (url, app, target) {
-    var prefixUrl = "https://raw.githubusercontent.com/tuaplicacionpropia/tuaplicacionpropia.github.io/master/";
-    
-    var fullUrl = prefixUrl + url;
-    
-    var argApp = app;
-    var argTarget = target;
-    var remote_error = argApp._remote_error;
-
-    $.ajax({ 
-      url : fullUrl, 
-      contentType: 'text/plain; charset=UTF-8', 
-      dataType : 'text', 
-      type: 'GET', 
-      error: function (jqXHR, textStatus, errorThrown) {
-        var respdata = {success: 'false', error: errorThrown, status: textStatus, jqXHR: jqXHR};
-        remote_error(respdata);
-      },
-      success: function (respdata, textStatus, jqXHR) {
-        var targetValue = Hjson.parse(respdata);
-        var newState = {}
-        newState[argTarget] = targetValue;
-        argApp.setState(newState);
-        argApp.forceUpdate();
-      }
-    });
-  };
-
   return Utils;
 
 })();

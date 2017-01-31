@@ -5,7 +5,11 @@ var AppUI = React.createClass({
   componentWillMount: function () {
     var self = this;
     var dao = Dao.createNew(this);
-    Utils.loadHjsonData('index.md', this, 'menu');
+    dao.loadObject('index.md', 'menu', function () {
+
+      var posts = self.state.menu[0].posts;
+      dao.loadArray(posts, 'posts');
+    });
     this.setState({ dao: dao });
   },
 
@@ -218,7 +222,7 @@ var AppUI = React.createClass({
   _renderTopMenu: function () {
     var result = null;
     var menu = this.state.menu; //dao.loadMenu();
-    console.log('posts = ' + menu[0].posts);
+    //console.log('posts = ' + menu[0].posts);
     var length = menu != null ? menu.length : 0;
     var options = [];
     for (var i = 0; i < length; i++) {
