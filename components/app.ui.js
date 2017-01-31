@@ -7,14 +7,24 @@ var AppUI = React.createClass({
     console.log('location = ' + window.location.href);
     self.setState({ complete: false });
     var dao = Dao.createNew(this);
-    //dao.loadHome();
-    //dao.selectMenu("javascript");
 
+    //file:///home/jmramoss/almacen/webtuaplicacionpropia/index.html?javascript/intro_reactjs.md
     //file:///home/jmramoss/almacen/webtuaplicacionpropia/index.html?www/github_api_rest.md
-    var page2Load = "www/github_api_rest.md";
-    dao.loadObject(page2Load, "post2Open", function () {
-      self._openPost(Article.createNew(self.state.post2Open));
-    });
+    var href = window.location.href;
+    var paramsIdx = href.indexOf("?");
+    if (paramsIdx > -1) {
+      var option = href.substring(paramsIdx + 1);
+      if (option.endsWith(".md")) {
+        dao.loadObject(option, "post2Open", function () {
+          self._openPost(Article.createNew(self.state.post2Open));
+        });
+      } else {
+        dao.selectMenu(option);
+      }
+    } else {
+      dao.loadHome();
+    }
+
     this.setState({ dao: dao });
   },
 
