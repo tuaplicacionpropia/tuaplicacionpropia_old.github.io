@@ -27,6 +27,7 @@ Dao = (function() {
       var infoMenu = self.app.state.infoMenu;
       var length = (infoMenu != null ? infoMenu.length : 0);
       var menus = [];
+      var articles = [];
       for (var i = 0; i < length; i++) {
         var itemMenu = infoMenu[i];
         if (itemMenu['type'] == 'dir') {
@@ -35,8 +36,16 @@ Dao = (function() {
           menu2Add['title'] =  Utils.capFirst(itemMenu['name']);
           menus.push(menu2Add);
         }
+        else if (itemMenu['type'] == 'file' && itemMenu['name'].endsWith('.md')) {
+          var itemArticle = itemMenu['name'];
+          articles.push(itemArticle);
+        }
       }
-      self.app.setState({'menu': menus, 'posts': []});
+      self.app.setState({'menu': menus});
+
+      self.loadArray(articles, 'posts', function () {
+        self.app.setState({complete: true});
+      });
       self.app.setState({complete: true});
     });
 /*
@@ -123,7 +132,7 @@ Dao = (function() {
   };
 
   Dao.prototype.loadObject = function (url, target, thenFn) {
-    var prefixUrl = "https://raw.githubusercontent.com/tuaplicacionpropia/tuaplicacionpropia.github.io/master/";
+    var prefixUrl = "https://raw.githubusercontent.com/tuaplicacionpropia/tuaplicacionpropia.github.io/master/posts/";
     
     var fullUrl = prefixUrl + url;
     
