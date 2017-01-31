@@ -931,7 +931,7 @@ var AppUI = React.createClass({
   },
 
   _renderBottomMenu: function () {
-    var menu = this.state.dao.loadMenu();
+    var menu = this.state.menu; //dao.loadMenu();
     var length = menu != null ? menu.length : 0;
     var options = [];
     for (var i = 0; i < length; i++) {
@@ -942,6 +942,15 @@ var AppUI = React.createClass({
     var result = React.createElement(
       "ul",
       null,
+      React.createElement(
+        "li",
+        null,
+        React.createElement(
+          "a",
+          { href: "#", onClick: this._openHome.bind(this) },
+          "Inicio"
+        )
+      ),
       options,
       React.createElement("div", { className: "clearfix" })
     );
