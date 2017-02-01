@@ -133,24 +133,6 @@ var AppUI = React.createClass({
               null,
               React.createElement(
                 "a",
-                { href: "#", className: "facebook beh" },
-                " "
-              )
-            ),
-            React.createElement(
-              "li",
-              null,
-              React.createElement(
-                "a",
-                { href: "#", className: "facebook vem" },
-                " "
-              )
-            ),
-            React.createElement(
-              "li",
-              null,
-              React.createElement(
-                "a",
                 { href: "https://www.youtube.com/channel/UCZ0Y_Mh6iRsNp3jt5lbL7qg", target: "_blank", className: "facebook yout" },
                 " "
               )
