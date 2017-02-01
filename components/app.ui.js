@@ -477,6 +477,7 @@ var AppUI = React.createClass({
   },
 
   _openPost: function (post) {
+    $('meta[itemprop=image]').attr('content', 'http://tuaplicacionpropia.com/images/banner1.jpg');
     this.state.dao.selectedPost = post;
     this.forceUpdate();
     //alert('periquito ' + post.title);
