@@ -15,7 +15,7 @@ Un ejemplo es [esta propia web][cms_ejemplo]
 
 
 [cms_ejemplo]: http://tuaplicacionpropia.com
-[cms_editor_content]: Para componer loshttp://showdownjs.github.io/demo/
+[cms_editor_content]: http://showdownjs.github.io/demo/
 
 
  '''
