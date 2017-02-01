@@ -229,7 +229,7 @@ var AppUI = React.createClass({
       null,
       React.createElement(
         "a",
-        { href: "#", onClick: this._openMenu.bind(this, menuitem) },
+        { href: "javascript:void(0)", onClick: this._openMenu.bind(this, menuitem) },
         menuitem.title
       )
     );
@@ -250,7 +250,7 @@ var AppUI = React.createClass({
       { className: "dropdown" },
       React.createElement(
         "a",
-        { href: "#", className: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-haspopup": "true", "aria-expanded": "false" },
+        { href: "javascript:void(0)", className: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-haspopup": "true", "aria-expanded": "false" },
         menuitem.title,
         " ",
         React.createElement("span", { className: "caret" })
@@ -283,7 +283,7 @@ var AppUI = React.createClass({
         null,
         React.createElement(
           "a",
-          { href: "#", onClick: this._openHome.bind(this) },
+          { href: "javascript:void(0)", onClick: this._openHome.bind(this) },
           "Inicio"
         )
       ),
