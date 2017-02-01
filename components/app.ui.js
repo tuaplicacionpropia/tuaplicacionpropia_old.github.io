@@ -1125,8 +1125,7 @@ var AppUI = React.createClass({
       this._renderBannerContent(),
       this._renderFooter(),
       this._renderFooterNav(),
-      this._renderCopyright(),
-      React.createElement("script", { type: "text/javascript", src: "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5891b1502427d071" })
+      this._renderCopyright()
     );
   }
 
