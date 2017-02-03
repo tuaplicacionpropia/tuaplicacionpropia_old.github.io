@@ -35,5 +35,7 @@ Get single commit - Ficheros cambiados:
 Ejemplo ficheros cambiados en un commit:
 <https://api.github.com/repos/tuaplicacionpropia/tuaplicacionpropia.github.io/commits/4a5e7059dc4b8f8af14f2f8ae1638221152fa4e0>
 
+Buscar en un repositorio:
+<https://api.github.com/search/code?q=mainLabel\:+repo:tuaplicacionpropia/tuaplicacionpropia.github.io>
 
  '''
