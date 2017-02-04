@@ -41,8 +41,20 @@ Título encabezados
 - Enumerado3
 
  *Italic* 
-
  **Bold** 
+
+Links: <http://tuaplicacionpropia.com>
+
+Images inline: ![Alt text][image_inline]
+
+[image_inline]: http://tuaplicacionpropia.com/images/showdown.logo.readme.png
+
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| **col 3 is**  | right-aligned | $1600 |
+| col 2 is      | *centered*    |   $12 |
+| zebra stripes | ~~are neat~~  |    $1 |
 
 
  '''
