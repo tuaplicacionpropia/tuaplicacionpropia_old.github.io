@@ -8,16 +8,18 @@ Para el contenido de los post, se utiliza markdown mediante [Showndown][showdown
 Para aprender sobre markdown mediante un editor online hacer click [aquí][showdown_demo].
 
 [showdown]: https://github.com/showdownjs/showdown
-[showdown_demo]: https://github.com/showdownjs/showdown
+[showdown_demo]: http://showdownjs.github.io/demo/
 
 
 Título encabezados
 
-# H3
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
 
-## H4
-
-### H5
 
 * Enumerado1
 * Enumerado2
@@ -38,9 +40,9 @@ Título encabezados
 - Enumerado2
 - Enumerado3
 
-*Italic*
-**Bold**
-~~Tachado~~
+ *Italic* 
+
+ **Bold** 
 
 
  '''
