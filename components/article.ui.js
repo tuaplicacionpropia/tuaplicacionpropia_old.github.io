@@ -75,7 +75,7 @@ var ArticleUI = React.createClass({
 
     var firstParagraph = article.getFirstParagraph();
 
-    var publishDay = article.getPublishDateDay();
+    var publishDay = null; //article.getPublishDateDay();
     var publishDay = publishDay != null ? publishDay : "";
 
     var author = article.getAuthor();
