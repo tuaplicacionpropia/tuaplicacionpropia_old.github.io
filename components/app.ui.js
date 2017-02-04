@@ -23,6 +23,7 @@ var AppUI = React.createClass({
       }
     } else {
       dao.loadHome();
+      dao.loadLastPosts();
     }
 
     this.setState({ dao: dao });

@@ -109,6 +109,199 @@ Dao = (function() {
 */
   };
 
+  Dao.prototype.loadLastPosts = function (thenFn) {
+    var self = this;
+    this.loadMetaGit("commits", "commits", function () {
+      var commits = self.app.state.commits;
+      var codes = [];
+      var length = (commits != null ? commits.length : 0);
+      for (var i = 0; i < length; i++) {
+        var commit = commits[i];
+        if (commit != null) {
+          if (!(commit == null || typeof commit['sha'] === "undefined" || commit['sha'] === null)) {
+            var code = commit['sha'];
+            if (code != null) {
+              codes.push("commits/" + code);
+            }
+          }
+        }
+      }
+      self.app.setState({"commits": undefined});
+      length = (codes != null ? codes.length : 0);
+      if (length > 0) {
+        self.loadGitArray(codes, "concreteCommits", function () {
+          var concreteCommits = self.app.state.concreteCommits;
+          var concreteLength = (concreteCommits != null ? concreteCommits.length : 0);
+
+          var postFiles = [];
+          var keyPostFiles = {};
+
+          for (var i = 0; i < concreteLength; i++) {
+            var concreteCommit = concreteCommits[i];
+            if (concreteCommit != null && !(typeof concreteCommit['files'] === "undefined") && !(concreteCommit['files'] === null) && (concreteCommit['files']).length > 0) {
+              var commitAuthor = concreteCommit['commit']['author'];
+              var commitAuthorName = commitAuthor['name'];
+              var commitAuthorEmail = commitAuthor['email'];
+              var commitAuthorDate = commitAuthor['date'];
+
+              var files = concreteCommit['files'];
+              var filesLength = files.length;
+              for (var j = 0; j < filesLength; j++) {
+                var file = files[j];
+                var filename = (file != null ? file['filename'] : null);
+                if (filename != null && filename.endsWith('.md') && !(filename in keyPostFiles)) {
+                  keyPostFiles[filename] = 'true';
+                  var postFile = {};
+                  
+                  postFile['filename'] = filename;
+                  postFile['status'] = file['status'];
+                  postFile['authorName'] = commitAuthorName;
+                  postFile['authorEmail'] = commitAuthorEmail;
+                  postFile['date'] = commitAuthorDate;
+                  postFiles.push(postFile);
+                }
+              }
+            }
+          }
+
+
+          var idPosts = [];
+          var postFilesSize = (postFiles != null ? postFiles.length : 0);
+          for (var i = 0; i < postFilesSize; i++) {
+            var postFile = postFiles[i];
+            var filename = postFile['filename'];
+            var idPost = filename;
+            if (idPost.startsWith('posts/')) {
+              idPost = idPost.substring('posts/'.length);
+            }
+            idPosts.push(idPost);
+            if (i > 2) {
+              break;
+            }
+          }
+          if (idPosts.length > 0) {
+            self.loadArray(idPosts, "posts");
+/*
+            self.loadArray(idPosts, "lastPostsPlain", function () {
+              var lastPostsPlain = self.app.state.lastPostsPlain;
+              var lastPostsPlainLength = (lastPostsPlain != null ? lastPostsPlain.length : 0);
+              var lastPosts = [];
+              for (var i = 0; i < lastPostsPlainLength; i++) {
+                var lastPostPlain = lastPostsPlain[i];
+                var toAdd = Article.createNew(lastPostPlain);
+                var postFile = postFiles[i];
+                toAdd.setCreationDate(postFile['date']);
+                toAdd.setLastModificationDate(postFile['date']);
+                toAdd.setPublishDate(postFile['date']);
+                toAdd.setAuthor(postFile['authorName']);
+                lastPosts.push(toAdd);
+              }
+              self.app.setState({"lastPosts": lastPosts});
+              self.app.setState({"posts": lastPosts});
+            });
+*/
+          }
+        });
+      }
+    });
+  };
+
+  Dao.prototype.loadGitArray = function (array, target, thenFn) {
+    var length = (array != null ? array.length : 0);
+    var numCompletes = 0;
+    var fnIncNumCompletes = function () {
+      numCompletes = numCompletes + 1;
+    };
+    for (var i = 0; i < length; i++) {
+      var itemUrl = array[i];
+      var newTarget = target + "[" + i + "]";
+      this.loadMetaGit(itemUrl, newTarget, fnIncNumCompletes);
+    }
+    var fnCheckComplete = function () {
+      if (numCompletes < length) {
+        setTimeout(fnCheckComplete, 10);
+      }
+      else {
+        if (thenFn != null) {
+          thenFn();
+        }
+      }
+    };
+    fnCheckComplete();
+  };
+
+  //url=commits
+  Dao.prototype.loadMetaGit = function (url, target, thenFn) {
+    var prefixUrl = "https://api.github.com/repos/tuaplicacionpropia/tuaplicacionpropia.github.io/";
+    url = (url != null ? url : "");
+    var fullUrl = prefixUrl + url;
+    
+    var argApp = this.app;
+    var argTarget = target;
+    var remote_error = argApp._remote_error;
+
+    $.ajax({ 
+      url : fullUrl, 
+      contentType: 'text/plain; charset=UTF-8', 
+      dataType : 'text', 
+      type: 'GET', 
+      error: function (jqXHR, textStatus, errorThrown) {
+        var respdata = {success: 'false', error: errorThrown, status: textStatus, jqXHR: jqXHR};
+        remote_error(respdata);
+        if (thenFn != null) {
+          thenFn();
+        }
+      },
+      success: function (respdata, textStatus, jqXHR) {
+        var targetValue = JSON.parse(respdata);
+//list
+//list.posts
+//list.posts[0]
+
+        var arrayTarget = argTarget.split(".");
+        var src = argApp.state;
+        src = (src != null ? src : {});
+        var targetLength = arrayTarget.length;
+        var newState = null;
+        for (var i = 0; i < targetLength; i++) {
+          var itemTarget = arrayTarget[i];
+
+          var itemTargetIdxStart = itemTarget.indexOf("[");
+          var itemTargetIdxEnd = itemTarget.indexOf("]");
+          var itemTargetName = (itemTargetIdxStart < 0 ? itemTarget : itemTarget.substring(0, itemTargetIdxStart));
+          var itemTargetIndex = (itemTargetIdxStart >= 0 && itemTargetIdxEnd >= 0 ? itemTarget.substring(itemTargetIdxStart + 1, itemTargetIdxEnd) : null);
+
+          if (typeof src[itemTargetName] === "undefined" || src[itemTargetName] === null) {
+            var src = (itemTargetIndex != null ? [] : {});
+          }
+          else {
+            var src = src[itemTargetName];
+          }
+
+          if (itemTargetIndex != null) {
+            var initLength = src.length;
+            for (var k = initLength; k <= itemTargetIndex; k++) {
+              src.push(null);
+            }
+            src[itemTargetIndex] = targetValue;
+          }
+
+          if (i == 0) {
+            newState = {};
+            newState[itemTargetName] = (targetLength == 1 && itemTargetIndex == null ? targetValue : src);
+          }
+        }
+
+        if (newState != null) {
+          argApp.setState(newState);
+          argApp.forceUpdate();
+        }
+        if (thenFn != null) {
+          thenFn();
+        }
+      }
+    });
+  };
 
   Dao.prototype.loadMetaData = function (url, target, thenFn) {
     var prefixUrl = "https://api.github.com/repos/tuaplicacionpropia/tuaplicacionpropia.github.io/contents/posts/";
@@ -254,13 +447,28 @@ Dao = (function() {
     });
   };
 
-  Dao.prototype.loadArray = function (array, target) {
+  Dao.prototype.loadArray = function (array, target, thenFn) {
     var length = (array != null ? array.length : 0);
+    var numCompletes = 0;
+    var fnIncNumCompletes = function () {
+      numCompletes = numCompletes + 1;
+    };
     for (var i = 0; i < length; i++) {
       var itemUrl = array[i];
       var newTarget = target + "[" + i + "]";
-      this.loadObject(itemUrl, newTarget);
+      this.loadObject(itemUrl, newTarget, fnIncNumCompletes);
     }
+    var fnCheckComplete = function () {
+      if (numCompletes < length) {
+        setTimeout(fnCheckComplete, 10);
+      }
+      else {
+        if (thenFn != null) {
+          thenFn();
+        }
+      }
+    };
+    fnCheckComplete();
   };
 
 
