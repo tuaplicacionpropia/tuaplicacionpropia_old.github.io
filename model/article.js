@@ -177,7 +177,7 @@ Article = (function() {
       //var converter = new showdown.Converter();
       var converter = new showdown.Converter({ extensions: ['adaptmd']});
       converter.setFlavor('github');
-
+      converter.setOption('tables', true);
       this.contentHtml = converter.makeHtml(this.content);
     }
     return this.contentHtml;

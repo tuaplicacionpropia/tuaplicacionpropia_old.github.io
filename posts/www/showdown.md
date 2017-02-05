@@ -44,7 +44,7 @@ Título encabezados
  *Italic* 
  **Bold** 
 
-Links: <http://tuaplicacionpropia.com>
+Links: [Tu Aplicación Propia](http://tuaplicacionpropia.com)
 
 Images inline: ![Alt text][image_inline]
 
