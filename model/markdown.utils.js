@@ -41,5 +41,5 @@ showdown.extension('adaptmd', function () {
     }
   }];
 });
+showdown.setFlavor('github');
 
-showdown.setOption('tables', true);

@@ -176,6 +176,8 @@ Article = (function() {
     if (this.contentHtml == null && this.content != null) {
       //var converter = new showdown.Converter();
       var converter = new showdown.Converter({ extensions: ['adaptmd']});
+      converter.setFlavor('github');
+
       this.contentHtml = converter.makeHtml(this.content);
     }
     return this.contentHtml;
