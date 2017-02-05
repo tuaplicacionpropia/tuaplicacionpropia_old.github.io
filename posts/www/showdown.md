@@ -21,9 +21,9 @@ Título encabezados
 ###### H6
 
 
-* Enumerado1
-* Enumerado2
-* Enumerado3
+ * Enumerado1
+ * Enumerado2
+ * Enumerado3
 
 ** Bold **
 
