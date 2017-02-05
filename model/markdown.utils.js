@@ -41,3 +41,5 @@ showdown.extension('adaptmd', function () {
     }
   }];
 });
+
+showdown.setOption('tables', true);
