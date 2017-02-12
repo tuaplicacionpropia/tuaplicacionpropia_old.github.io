@@ -180,6 +180,10 @@ Article = (function() {
       converter.setOption('tables', true);
       this.contentHtml = converter.makeHtml(this.content);
     }
+//      console.log('>>>>>>>>>>>>>>>><content');
+//      console.log(this.content);
+//      console.log('>>>>>>>>>>>>>>>>>>>>><contentHtml');
+//      console.log(this.contentHtml);
     return this.contentHtml;
   };
 

@@ -8,4 +8,7 @@ Existen [recomendaciones][consejos_posts] para escribir posts y [estructuras][es
 [consejos_posts]: https://www.40defiebre.com/consejos-escribir-post/
 [estructura_post]: https://www.40defiebre.com/estructura-perfecta-post-tipos/
 
+Buscar imágenes mediante una [api][api_pixabay]:
+[api_pixabay]: https://pixabay.com/api/docs/
+
  '''

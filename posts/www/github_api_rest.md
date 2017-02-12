@@ -38,4 +38,7 @@ Ejemplo ficheros cambiados en un commit:
 Buscar en un repositorio:
 <https://api.github.com/search/code?q=mainLabel\:+repo:tuaplicacionpropia/tuaplicacionpropia.github.io>
 
+Buscar commits asociados a una carpeta posts:
+<https://api.github.com/repos/tuaplicacionpropia/tuaplicacionpropia.github.io/commits?path=posts>
+
  '''
