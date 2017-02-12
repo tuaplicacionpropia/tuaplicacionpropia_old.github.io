@@ -78,11 +78,12 @@ Dao = (function() {
 
   Dao.prototype.loadLastPosts = function (thenFn) {
     var self = this;
-    self.provMeta.load("commits", "commits", function () {
+    //self.provMeta.load("commits", "commits", function () {
+    self.provMeta.load("commits?path=posts", "commits", function () {
       var commits = self.app.state.commits;
       var codes = [];
       var length = (commits != null ? commits.length : 0);
-      for (var i = 0; i < length; i++) {
+      for (var i = 0; i < Math.min(length, 5); i++) {
         var commit = commits[i];
         if (commit != null) {
           if (!(commit == null || typeof commit['sha'] === "undefined" || commit['sha'] === null)) {
