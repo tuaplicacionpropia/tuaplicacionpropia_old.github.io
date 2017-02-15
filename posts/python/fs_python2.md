@@ -1,5 +1,5 @@
 title: Sistema de archivos Python2
-mainImage: fs_python.png
+mainImage: fs_python_real.jpg
 content: 
  '''
 
