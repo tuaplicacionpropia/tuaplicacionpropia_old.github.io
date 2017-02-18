@@ -177,6 +177,37 @@ Utils = (function() {
     return result;
   };
 
+  Utils.getParamsGET = function () {
+    var result = {};
+    var href = window.location.href;
+    var paramsIdx = href.indexOf("?");
+    if (paramsIdx > -1) {
+      var options = href.substring(paramsIdx + 1);
+      options = Utils.removeGooglePlus(options);
+      var arrayOptions = options.split("&");
+      var length = (arrayOptions != null ? arrayOptions.length : 0);
+      for (var i = 0; i < length; i++) {
+        var option = options[i];
+        var arrayOption = option.split("=");
+        var optionName = arrayOption[0];
+        var optionValue = arrayOption[1];
+        result[optionName] = optionValue;
+      }
+    }
+    return result;
+  };
+
+  //http://tuaplicacionpropia.com/?python/fs_python.md#.WKhm23IMjI0.google_plusone_share
+  Utils.removeGooglePlus = function (text) {
+    var result = null;
+    result = text;
+    var idx = result.lastIndexOf("#");
+    if (idx > -1) {
+      result = result.substring(0, idx);
+    }
+    return result;
+  };
+
   return Utils;
 
 })();

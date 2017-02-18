@@ -1,5 +1,5 @@
 var AppUI = React.createClass({
-  displayName: "AppUI",
+  displayName: 'AppUI',
 
 
   componentWillMount: function () {
@@ -11,15 +11,16 @@ var AppUI = React.createClass({
     //file:///home/jmramoss/almacen/webtuaplicacionpropia/index.html?javascript/intro_reactjs.md
     //file:///home/jmramoss/almacen/webtuaplicacionpropia/index.html?www/github_api_rest.md
     var href = window.location.href;
-    var paramsIdx = href.indexOf("?");
-    if (paramsIdx > -1) {
-      var option = href.substring(paramsIdx + 1);
-      if (option.endsWith(".md")) {
-        dao.provPosts.load(option, "post2Open", function () {
+
+    var params = Utils.getParamsGET();
+    var inputPost = params['post'];
+    if (inputPost != null && inputPost.length > 0) {
+      if (inputPost.endsWith(".md")) {
+        dao.provPosts.load(inputPost, "post2Open", function () {
           self._openPost(Article.createNew(self.state.post2Open));
         });
       } else {
-        dao.selectMenu(option);
+        dao.selectMenu(inputPost);
       }
     } else {
       dao.loadHome();
@@ -50,8 +51,8 @@ var AppUI = React.createClass({
 
   _renderHeader: function () {
     return React.createElement(
-      "div",
-      { className: "header" },
+      'div',
+      { className: 'header' },
       this._renderHeaderTop(),
       this._renderHeaderBottom()
     );
@@ -59,127 +60,127 @@ var AppUI = React.createClass({
 
   _renderHeaderTop: function () {
     return React.createElement(
-      "div",
-      { className: "header-top" },
+      'div',
+      { className: 'header-top' },
       React.createElement(
-        "div",
-        { className: "container" },
+        'div',
+        { className: 'container' },
         React.createElement(
-          "div",
-          { className: "logo" },
+          'div',
+          { className: 'logo' },
           React.createElement(
-            "a",
-            { href: "index.html" },
+            'a',
+            { href: 'index.html' },
             React.createElement(
-              "h1",
+              'h1',
               null,
-              "TU APLICACI\xD3N PROPIA"
+              'TU APLICACI\xD3N PROPIA'
             )
           )
         ),
         React.createElement(
-          "div",
-          { className: "search" },
+          'div',
+          { className: 'search' },
           React.createElement(
-            "form",
+            'form',
             null,
-            React.createElement("input", { type: "text", value: "Search", onfocus: "this.value = '';", onblur: "if (this.value == '') {this.value = 'Search';}" }),
-            React.createElement("input", { type: "submit", value: "" })
+            React.createElement('input', { type: 'text', value: 'Search', onfocus: 'this.value = \'\';', onblur: 'if (this.value == \'\') {this.value = \'Search\';}' }),
+            React.createElement('input', { type: 'submit', value: '' })
           )
         ),
         React.createElement(
-          "div",
-          { className: "social" },
+          'div',
+          { className: 'social' },
           React.createElement(
-            "ul",
+            'ul',
             null,
             React.createElement(
-              "li",
+              'li',
               null,
               React.createElement(
-                "a",
-                { href: "https://www.facebook.com/tuaplicacionpropia", target: "_blank", className: "facebook" },
-                " "
+                'a',
+                { href: 'https://www.facebook.com/tuaplicacionpropia', target: '_blank', className: 'facebook' },
+                ' '
               )
             ),
             React.createElement(
-              "li",
+              'li',
               null,
               React.createElement(
-                "a",
-                { href: "https://twitter.com/tuaplicacionpro", target: "_blank", className: "facebook twitter" },
-                " "
+                'a',
+                { href: 'https://twitter.com/tuaplicacionpro', target: '_blank', className: 'facebook twitter' },
+                ' '
               )
             ),
             React.createElement(
-              "li",
+              'li',
               null,
               React.createElement(
-                "a",
-                { href: "https://plus.google.com/112667009554417038338?hl=es", target: "_blank", className: "facebook chrome" },
-                " "
+                'a',
+                { href: 'https://plus.google.com/112667009554417038338?hl=es', target: '_blank', className: 'facebook chrome' },
+                ' '
               )
             ),
             React.createElement(
-              "li",
+              'li',
               null,
               React.createElement(
-                "a",
-                { href: "https://www.linkedin.com/in/jes%C3%BAs-mar%C3%ADa-ramos-saky-835871121/", target: "_blank", className: "facebook in" },
-                " "
+                'a',
+                { href: 'https://www.linkedin.com/in/jes%C3%BAs-mar%C3%ADa-ramos-saky-835871121/', target: '_blank', className: 'facebook in' },
+                ' '
               )
             ),
             React.createElement(
-              "li",
+              'li',
               null,
               React.createElement(
-                "a",
-                { href: "https://www.youtube.com/channel/UCZ0Y_Mh6iRsNp3jt5lbL7qg", target: "_blank", className: "facebook yout" },
-                " "
+                'a',
+                { href: 'https://www.youtube.com/channel/UCZ0Y_Mh6iRsNp3jt5lbL7qg', target: '_blank', className: 'facebook yout' },
+                ' '
               )
             ),
             React.createElement(
-              "li",
+              'li',
               null,
               React.createElement(
-                "a",
-                { href: "https://github.com/tuaplicacionpropia/tuaplicacionpropia.github.io", target: "_blank" },
-                React.createElement("i", { className: "fa fa-github", "aria-hidden": "true" })
+                'a',
+                { href: 'https://github.com/tuaplicacionpropia/tuaplicacionpropia.github.io', target: '_blank' },
+                React.createElement('i', { className: 'fa fa-github', 'aria-hidden': 'true' })
               )
             )
           )
         ),
-        React.createElement("div", { className: "clearfix" })
+        React.createElement('div', { className: 'clearfix' })
       )
     );
   },
 
   _renderHeaderBottom: function () {
     return React.createElement(
-      "div",
-      { className: "head-bottom" },
+      'div',
+      { className: 'head-bottom' },
       React.createElement(
-        "div",
-        { className: "container" },
+        'div',
+        { className: 'container' },
         React.createElement(
-          "div",
-          { className: "navbar-header" },
+          'div',
+          { className: 'navbar-header' },
           React.createElement(
-            "button",
-            { type: "button", className: "navbar-toggle collapsed", "data-toggle": "collapse", "data-target": "#navbar", "aria-expanded": "false", "aria-controls": "navbar" },
+            'button',
+            { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navbar', 'aria-expanded': 'false', 'aria-controls': 'navbar' },
             React.createElement(
-              "span",
-              { className: "sr-only" },
-              "Toggle navigation"
+              'span',
+              { className: 'sr-only' },
+              'Toggle navigation'
             ),
-            React.createElement("span", { className: "icon-bar" }),
-            React.createElement("span", { className: "icon-bar" }),
-            React.createElement("span", { className: "icon-bar" })
+            React.createElement('span', { className: 'icon-bar' }),
+            React.createElement('span', { className: 'icon-bar' }),
+            React.createElement('span', { className: 'icon-bar' })
           )
         ),
         React.createElement(
-          "div",
-          { id: "navbar", className: "navbar-collapse collapse" },
+          'div',
+          { id: 'navbar', className: 'navbar-collapse collapse' },
           this._renderTopMenu()
         )
       )
@@ -210,11 +211,11 @@ var AppUI = React.createClass({
 
   _renderMenuitemLeaf: function (menuitem) {
     return React.createElement(
-      "li",
+      'li',
       null,
       React.createElement(
-        "a",
-        { href: "javascript:void(0)", onClick: this._openMenu.bind(this, menuitem) },
+        'a',
+        { href: 'javascript:void(0)', onClick: this._openMenu.bind(this, menuitem) },
         menuitem.title
       )
     );
@@ -231,18 +232,18 @@ var AppUI = React.createClass({
       }
     }
     var result = React.createElement(
-      "li",
-      { className: "dropdown" },
+      'li',
+      { className: 'dropdown' },
       React.createElement(
-        "a",
-        { href: "javascript:void(0)", className: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-haspopup": "true", "aria-expanded": "false" },
+        'a',
+        { href: 'javascript:void(0)', className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
         menuitem.title,
-        " ",
-        React.createElement("span", { className: "caret" })
+        ' ',
+        React.createElement('span', { className: 'caret' })
       ),
       React.createElement(
-        "ul",
-        { className: "dropdown-menu" },
+        'ul',
+        { className: 'dropdown-menu' },
         options
       )
     );
@@ -261,15 +262,15 @@ var AppUI = React.createClass({
       options.push(option);
     }
     var result = React.createElement(
-      "ul",
-      { className: "nav navbar-nav" },
+      'ul',
+      { className: 'nav navbar-nav' },
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "javascript:void(0)", onClick: this._openHome.bind(this) },
-          "Inicio"
+          'a',
+          { href: 'javascript:void(0)', onClick: this._openHome.bind(this) },
+          'Inicio'
         )
       ),
       options
@@ -279,201 +280,201 @@ var AppUI = React.createClass({
 
   _renderTopMenu2: function () {
     return React.createElement(
-      "ul",
-      { className: "nav navbar-nav" },
+      'ul',
+      { className: 'nav navbar-nav' },
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "index.html" },
-          "Home"
+          'a',
+          { href: 'index.html' },
+          'Home'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "videos.html" },
-          "Videos"
+          'a',
+          { href: 'videos.html' },
+          'Videos'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "reviews.html" },
-          "Reviews"
+          'a',
+          { href: 'reviews.html' },
+          'Reviews'
         )
       ),
       React.createElement(
-        "li",
-        { className: "dropdown" },
+        'li',
+        { className: 'dropdown' },
         React.createElement(
-          "a",
-          { href: "#", className: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-haspopup": "true", "aria-expanded": "false" },
-          "Tech ",
-          React.createElement("span", { className: "caret" })
+          'a',
+          { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
+          'Tech ',
+          React.createElement('span', { className: 'caret' })
         ),
         React.createElement(
-          "ul",
-          { className: "dropdown-menu" },
+          'ul',
+          { className: 'dropdown-menu' },
           React.createElement(
-            "li",
+            'li',
             null,
             React.createElement(
-              "a",
-              { href: "tech.html" },
-              "Action"
+              'a',
+              { href: 'tech.html' },
+              'Action'
             )
           ),
           React.createElement(
-            "li",
+            'li',
             null,
             React.createElement(
-              "a",
-              { href: "tech.html" },
-              "Action"
+              'a',
+              { href: 'tech.html' },
+              'Action'
             )
           ),
           React.createElement(
-            "li",
+            'li',
             null,
             React.createElement(
-              "a",
-              { href: "tech.html" },
-              "Action"
+              'a',
+              { href: 'tech.html' },
+              'Action'
             )
           )
         )
       ),
       React.createElement(
-        "li",
-        { className: "dropdown" },
+        'li',
+        { className: 'dropdown' },
         React.createElement(
-          "a",
-          { href: "#", className: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-haspopup": "true", "aria-expanded": "false" },
-          "Culture ",
-          React.createElement("span", { className: "caret" })
+          'a',
+          { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
+          'Culture ',
+          React.createElement('span', { className: 'caret' })
         ),
         React.createElement(
-          "ul",
-          { className: "dropdown-menu" },
+          'ul',
+          { className: 'dropdown-menu' },
           React.createElement(
-            "li",
+            'li',
             null,
             React.createElement(
-              "a",
-              { href: "singlepage.html" },
-              "Action"
+              'a',
+              { href: 'singlepage.html' },
+              'Action'
             )
           ),
           React.createElement(
-            "li",
+            'li',
             null,
             React.createElement(
-              "a",
-              { href: "singlepage.html" },
-              "Action"
+              'a',
+              { href: 'singlepage.html' },
+              'Action'
             )
           ),
           React.createElement(
-            "li",
+            'li',
             null,
             React.createElement(
-              "a",
-              { href: "singlepage.html" },
-              "Action"
+              'a',
+              { href: 'singlepage.html' },
+              'Action'
             )
           )
         )
       ),
       React.createElement(
-        "li",
-        { className: "dropdown" },
+        'li',
+        { className: 'dropdown' },
         React.createElement(
-          "a",
-          { href: "#", className: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-haspopup": "true", "aria-expanded": "false" },
-          "Science ",
-          React.createElement("span", { className: "caret" })
+          'a',
+          { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
+          'Science ',
+          React.createElement('span', { className: 'caret' })
         ),
         React.createElement(
-          "ul",
-          { className: "dropdown-menu" },
+          'ul',
+          { className: 'dropdown-menu' },
           React.createElement(
-            "li",
+            'li',
             null,
             React.createElement(
-              "a",
-              { href: "singlepage.html" },
-              "Action"
+              'a',
+              { href: 'singlepage.html' },
+              'Action'
             )
           ),
           React.createElement(
-            "li",
+            'li',
             null,
             React.createElement(
-              "a",
-              { href: "singlepage.html" },
-              "Action"
+              'a',
+              { href: 'singlepage.html' },
+              'Action'
             )
           ),
           React.createElement(
-            "li",
+            'li',
             null,
             React.createElement(
-              "a",
-              { href: "singlepage.html" },
-              "Action"
+              'a',
+              { href: 'singlepage.html' },
+              'Action'
             )
           )
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "design.html" },
-          "Design"
+          'a',
+          { href: 'design.html' },
+          'Design'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "business.html" },
-          "Business"
+          'a',
+          { href: 'business.html' },
+          'Business'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "world.html" },
-          "World"
+          'a',
+          { href: 'world.html' },
+          'World'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "forum.html" },
-          "Forum"
+          'a',
+          { href: 'forum.html' },
+          'Forum'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "contact.html" },
-          "Contact"
+          'a',
+          { href: 'contact.html' },
+          'Contact'
         )
       )
     );
@@ -508,8 +509,8 @@ var AppUI = React.createClass({
 
   _renderContent: function () {
     return React.createElement(
-      "div",
-      { className: "technology" },
+      'div',
+      { className: 'technology' },
       this._renderMainContent()
     );
   },
@@ -522,19 +523,19 @@ var AppUI = React.createClass({
       var content = newArticleUI({ mold: "full", item: this.state.dao.selectedPost });
     }
     return React.createElement(
-      "div",
-      { className: "container" },
+      'div',
+      { className: 'container' },
       React.createElement(
-        "div",
-        { className: "col-md-9 technology-left" },
+        'div',
+        { className: 'col-md-9 technology-left' },
         React.createElement(
-          "div",
+          'div',
           null,
           content
         )
       ),
       this._renderSidePanel(),
-      React.createElement("div", { className: "clearfix" })
+      React.createElement('div', { className: 'clearfix' })
     );
   },
 
@@ -557,227 +558,227 @@ var AppUI = React.createClass({
 
   _renderSidePanel: function () {
     return React.createElement(
-      "div",
-      { className: "col-md-3 technology-right" },
+      'div',
+      { className: 'col-md-3 technology-right' },
       React.createElement(
-        "div",
-        { className: "blo-top" },
+        'div',
+        { className: 'blo-top' },
         React.createElement(
-          "div",
-          { className: "tech-btm" },
-          React.createElement("img", { src: "images/banner1.jpg", className: "img-responsive", alt: "" })
+          'div',
+          { className: 'tech-btm' },
+          React.createElement('img', { src: 'images/banner1.jpg', className: 'img-responsive', alt: '' })
         )
       ),
       React.createElement(
-        "div",
-        { className: "blo-top" },
+        'div',
+        { className: 'blo-top' },
         React.createElement(
-          "div",
-          { className: "tech-btm" },
+          'div',
+          { className: 'tech-btm' },
           React.createElement(
-            "h4",
+            'h4',
             null,
-            "Sign up to our newsletter"
+            'Sign up to our newsletter'
           ),
           React.createElement(
-            "p",
+            'p',
             null,
-            "Pellentesque dui, non felis. Maecenas male"
+            'Pellentesque dui, non felis. Maecenas male'
           ),
           React.createElement(
-            "div",
-            { className: "name" },
+            'div',
+            { className: 'name' },
             React.createElement(
-              "form",
+              'form',
               null,
-              React.createElement("input", { type: "text", placeholder: "Email", required: "" })
+              React.createElement('input', { type: 'text', placeholder: 'Email', required: '' })
             )
           ),
           React.createElement(
-            "div",
-            { className: "button" },
+            'div',
+            { className: 'button' },
             React.createElement(
-              "form",
+              'form',
               null,
-              React.createElement("input", { type: "submit", value: "Subscribe" })
+              React.createElement('input', { type: 'submit', value: 'Subscribe' })
             )
           ),
           React.createElement(
-            "div",
-            { className: "clearfix" },
-            " "
+            'div',
+            { className: 'clearfix' },
+            ' '
           )
         )
       ),
       React.createElement(
-        "div",
-        { className: "blo-top1" },
+        'div',
+        { className: 'blo-top1' },
         React.createElement(
-          "div",
-          { className: "tech-btm" },
+          'div',
+          { className: 'tech-btm' },
           React.createElement(
-            "h4",
+            'h4',
             null,
-            "Top stories of the week "
+            'Top stories of the week '
           ),
           React.createElement(
-            "div",
-            { className: "blog-grids" },
+            'div',
+            { className: 'blog-grids' },
             React.createElement(
-              "div",
-              { className: "blog-grid-left" },
+              'div',
+              { className: 'blog-grid-left' },
               React.createElement(
-                "a",
-                { href: "singlepage.html" },
-                React.createElement("img", { src: "images/6.jpg", className: "img-responsive", alt: "" })
+                'a',
+                { href: 'singlepage.html' },
+                React.createElement('img', { src: 'images/6.jpg', className: 'img-responsive', alt: '' })
               )
             ),
             React.createElement(
-              "div",
-              { className: "blog-grid-right" },
+              'div',
+              { className: 'blog-grid-right' },
               React.createElement(
-                "h5",
+                'h5',
                 null,
                 React.createElement(
-                  "a",
-                  { href: "singlepage.html" },
-                  "Pellentesque dui, non felis. Maecenas male"
+                  'a',
+                  { href: 'singlepage.html' },
+                  'Pellentesque dui, non felis. Maecenas male'
                 ),
-                " "
+                ' '
               )
             ),
             React.createElement(
-              "div",
-              { className: "clearfix" },
-              " "
+              'div',
+              { className: 'clearfix' },
+              ' '
             )
           ),
           React.createElement(
-            "div",
-            { className: "blog-grids" },
+            'div',
+            { className: 'blog-grids' },
             React.createElement(
-              "div",
-              { className: "blog-grid-left" },
+              'div',
+              { className: 'blog-grid-left' },
               React.createElement(
-                "a",
-                { href: "singlepage.html" },
-                React.createElement("img", { src: "images/7.jpg", className: "img-responsive", alt: "" })
+                'a',
+                { href: 'singlepage.html' },
+                React.createElement('img', { src: 'images/7.jpg', className: 'img-responsive', alt: '' })
               )
             ),
             React.createElement(
-              "div",
-              { className: "blog-grid-right" },
+              'div',
+              { className: 'blog-grid-right' },
               React.createElement(
-                "h5",
+                'h5',
                 null,
                 React.createElement(
-                  "a",
-                  { href: "singlepage.html" },
-                  "Pellentesque dui, non felis. Maecenas male"
+                  'a',
+                  { href: 'singlepage.html' },
+                  'Pellentesque dui, non felis. Maecenas male'
                 ),
-                " "
+                ' '
               )
             ),
             React.createElement(
-              "div",
-              { className: "clearfix" },
-              " "
+              'div',
+              { className: 'clearfix' },
+              ' '
             )
           ),
           React.createElement(
-            "div",
-            { className: "blog-grids" },
+            'div',
+            { className: 'blog-grids' },
             React.createElement(
-              "div",
-              { className: "blog-grid-left" },
+              'div',
+              { className: 'blog-grid-left' },
               React.createElement(
-                "a",
-                { href: "singlepage.html" },
-                React.createElement("img", { src: "images/11.jpg", className: "img-responsive", alt: "" })
+                'a',
+                { href: 'singlepage.html' },
+                React.createElement('img', { src: 'images/11.jpg', className: 'img-responsive', alt: '' })
               )
             ),
             React.createElement(
-              "div",
-              { className: "blog-grid-right" },
+              'div',
+              { className: 'blog-grid-right' },
               React.createElement(
-                "h5",
+                'h5',
                 null,
                 React.createElement(
-                  "a",
-                  { href: "singlepage.html" },
-                  "Pellentesque dui, non felis. Maecenas male"
+                  'a',
+                  { href: 'singlepage.html' },
+                  'Pellentesque dui, non felis. Maecenas male'
                 ),
-                " "
+                ' '
               )
             ),
             React.createElement(
-              "div",
-              { className: "clearfix" },
-              " "
+              'div',
+              { className: 'clearfix' },
+              ' '
             )
           ),
           React.createElement(
-            "div",
-            { className: "blog-grids" },
+            'div',
+            { className: 'blog-grids' },
             React.createElement(
-              "div",
-              { className: "blog-grid-left" },
+              'div',
+              { className: 'blog-grid-left' },
               React.createElement(
-                "a",
-                { href: "singlepage.html" },
-                React.createElement("img", { src: "images/9.jpg", className: "img-responsive", alt: "" })
+                'a',
+                { href: 'singlepage.html' },
+                React.createElement('img', { src: 'images/9.jpg', className: 'img-responsive', alt: '' })
               )
             ),
             React.createElement(
-              "div",
-              { className: "blog-grid-right" },
+              'div',
+              { className: 'blog-grid-right' },
               React.createElement(
-                "h5",
+                'h5',
                 null,
                 React.createElement(
-                  "a",
-                  { href: "singlepage.html" },
-                  "Pellentesque dui, non felis. Maecenas male"
+                  'a',
+                  { href: 'singlepage.html' },
+                  'Pellentesque dui, non felis. Maecenas male'
                 ),
-                " "
+                ' '
               )
             ),
             React.createElement(
-              "div",
-              { className: "clearfix" },
-              " "
+              'div',
+              { className: 'clearfix' },
+              ' '
             )
           ),
           React.createElement(
-            "div",
-            { className: "blog-grids" },
+            'div',
+            { className: 'blog-grids' },
             React.createElement(
-              "div",
-              { className: "blog-grid-left" },
+              'div',
+              { className: 'blog-grid-left' },
               React.createElement(
-                "a",
-                { href: "singlepage.html" },
-                React.createElement("img", { src: "images/10.jpg", className: "img-responsive", alt: "" })
+                'a',
+                { href: 'singlepage.html' },
+                React.createElement('img', { src: 'images/10.jpg', className: 'img-responsive', alt: '' })
               )
             ),
             React.createElement(
-              "div",
-              { className: "blog-grid-right" },
+              'div',
+              { className: 'blog-grid-right' },
               React.createElement(
-                "h5",
+                'h5',
                 null,
                 React.createElement(
-                  "a",
-                  { href: "singlepage.html" },
-                  "Pellentesque dui, non felis. Maecenas male"
+                  'a',
+                  { href: 'singlepage.html' },
+                  'Pellentesque dui, non felis. Maecenas male'
                 ),
-                " "
+                ' '
               )
             ),
             React.createElement(
-              "div",
-              { className: "clearfix" },
-              " "
+              'div',
+              { className: 'clearfix' },
+              ' '
             )
           )
         )
@@ -787,148 +788,148 @@ var AppUI = React.createClass({
 
   _renderFooter: function () {
     return React.createElement(
-      "div",
-      { className: "footer" },
+      'div',
+      { className: 'footer' },
       React.createElement(
-        "div",
-        { className: "container" },
+        'div',
+        { className: 'container' },
         React.createElement(
-          "div",
-          { className: "col-md-4 footer-left" },
+          'div',
+          { className: 'col-md-4 footer-left' },
           React.createElement(
-            "h6",
+            'h6',
             null,
-            "THIS LOOKS GREAT"
+            'THIS LOOKS GREAT'
           ),
           React.createElement(
-            "p",
+            'p',
             null,
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt"
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt'
           ),
           React.createElement(
-            "p",
+            'p',
             null,
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt consectetur adipisicing elit,"
+            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt consectetur adipisicing elit,'
           )
         ),
         React.createElement(
-          "div",
-          { className: "col-md-4 footer-middle" },
+          'div',
+          { className: 'col-md-4 footer-middle' },
           React.createElement(
-            "h4",
+            'h4',
             null,
-            "Twitter Feed"
+            'Twitter Feed'
           ),
           React.createElement(
-            "div",
-            { className: "mid-btm" },
+            'div',
+            { className: 'mid-btm' },
             React.createElement(
-              "p",
+              'p',
               null,
-              "Consectetur adipisicing"
+              'Consectetur adipisicing'
             ),
             React.createElement(
-              "p",
+              'p',
               null,
-              "Sed do eiusmod tempor"
+              'Sed do eiusmod tempor'
             ),
             React.createElement(
-              "a",
-              { href: "https://w3layouts.com/" },
-              "https://w3layouts.com/"
+              'a',
+              { href: 'https://w3layouts.com/' },
+              'https://w3layouts.com/'
             )
           ),
           React.createElement(
-            "p",
+            'p',
             null,
-            "Consectetur adipisicing"
+            'Consectetur adipisicing'
           ),
           React.createElement(
-            "p",
+            'p',
             null,
-            "Sed do eiusmod tempor"
+            'Sed do eiusmod tempor'
           ),
           React.createElement(
-            "a",
-            { href: "https://w3layouts.com/" },
-            "https://w3layouts.com/"
+            'a',
+            { href: 'https://w3layouts.com/' },
+            'https://w3layouts.com/'
           )
         ),
         React.createElement(
-          "div",
-          { className: "col-md-4 footer-right" },
+          'div',
+          { className: 'col-md-4 footer-right' },
           React.createElement(
-            "h4",
+            'h4',
             null,
-            "Quick Links"
+            'Quick Links'
           ),
           React.createElement(
-            "li",
+            'li',
             null,
             React.createElement(
-              "a",
-              { href: "#" },
-              "Eiusmod tempor"
+              'a',
+              { href: '#' },
+              'Eiusmod tempor'
             )
           ),
           React.createElement(
-            "li",
+            'li',
             null,
             React.createElement(
-              "a",
-              { href: "#" },
-              "Consectetur "
+              'a',
+              { href: '#' },
+              'Consectetur '
             )
           ),
           React.createElement(
-            "li",
+            'li',
             null,
             React.createElement(
-              "a",
-              { href: "#" },
-              "Adipisicing elit"
+              'a',
+              { href: '#' },
+              'Adipisicing elit'
             )
           ),
           React.createElement(
-            "li",
+            'li',
             null,
             React.createElement(
-              "a",
-              { href: "#" },
-              "Eiusmod tempor"
+              'a',
+              { href: '#' },
+              'Eiusmod tempor'
             )
           ),
           React.createElement(
-            "li",
+            'li',
             null,
             React.createElement(
-              "a",
-              { href: "#" },
-              "Consectetur "
+              'a',
+              { href: '#' },
+              'Consectetur '
             )
           ),
           React.createElement(
-            "li",
+            'li',
             null,
             React.createElement(
-              "a",
-              { href: "#" },
-              "Adipisicing elit"
+              'a',
+              { href: '#' },
+              'Adipisicing elit'
             )
           )
         ),
-        React.createElement("div", { className: "clearfix" })
+        React.createElement('div', { className: 'clearfix' })
       )
     );
   },
 
   _renderFooterNav: function () {
     return React.createElement(
-      "div",
-      { className: "foot-nav" },
+      'div',
+      { className: 'foot-nav' },
       React.createElement(
-        "div",
-        { className: "container" },
+        'div',
+        { className: 'container' },
         this._renderBottomMenu()
       )
     );
@@ -944,145 +945,145 @@ var AppUI = React.createClass({
       options.push(option);
     }
     var result = React.createElement(
-      "ul",
+      'ul',
       null,
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "#", onClick: this._openHome.bind(this) },
-          "Inicio"
+          'a',
+          { href: '#', onClick: this._openHome.bind(this) },
+          'Inicio'
         )
       ),
       options,
-      React.createElement("div", { className: "clearfix" })
+      React.createElement('div', { className: 'clearfix' })
     );
     return result;
   },
 
   _renderBottomMenu2: function () {
     return React.createElement(
-      "ul",
+      'ul',
       null,
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "index.html" },
-          "Home"
+          'a',
+          { href: 'index.html' },
+          'Home'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "videos.html" },
-          "Videos"
+          'a',
+          { href: 'videos.html' },
+          'Videos'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "reviews.html" },
-          "Reviews"
+          'a',
+          { href: 'reviews.html' },
+          'Reviews'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "tech.html" },
-          "Tech"
+          'a',
+          { href: 'tech.html' },
+          'Tech'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "singlepage.html" },
-          "Culture"
+          'a',
+          { href: 'singlepage.html' },
+          'Culture'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "singlepage.html" },
-          "Science"
+          'a',
+          { href: 'singlepage.html' },
+          'Science'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "design.html" },
-          "Design"
+          'a',
+          { href: 'design.html' },
+          'Design'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "business.html" },
-          "Business"
+          'a',
+          { href: 'business.html' },
+          'Business'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "world.html" },
-          "World"
+          'a',
+          { href: 'world.html' },
+          'World'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "forum.html" },
-          "Forum"
+          'a',
+          { href: 'forum.html' },
+          'Forum'
         )
       ),
       React.createElement(
-        "li",
+        'li',
         null,
         React.createElement(
-          "a",
-          { href: "contact.html" },
-          "Contact"
+          'a',
+          { href: 'contact.html' },
+          'Contact'
         )
       ),
-      React.createElement("div", { className: "clearfix" })
+      React.createElement('div', { className: 'clearfix' })
     );
   },
 
   _renderCopyright: function () {
     return React.createElement(
-      "div",
-      { className: "copyright" },
+      'div',
+      { className: 'copyright' },
       React.createElement(
-        "div",
-        { className: "container" },
+        'div',
+        { className: 'container' },
         React.createElement(
-          "p",
+          'p',
           null,
-          "\xA9 2016 Business_Blog. All rights reserved | Template by ",
+          '\xA9 2016 Business_Blog. All rights reserved | Template by ',
           React.createElement(
-            "a",
-            { href: "http://w3layouts.com/" },
-            "W3layouts"
+            'a',
+            { href: 'http://w3layouts.com/' },
+            'W3layouts'
           )
         )
       )
@@ -1123,7 +1124,7 @@ var AppUI = React.createClass({
   render: function () {
     console.log("RENDERING APP");
     return React.createElement(
-      "span",
+      'span',
       null,
       this._renderHeader(),
       this._renderBannerContent(),
