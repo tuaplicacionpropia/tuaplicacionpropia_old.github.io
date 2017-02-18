@@ -495,13 +495,13 @@ var ArticleUI = React.createClass({
       React.createElement(
         "div",
         { className: " blog-grid2" },
-        React.createElement("img", { src: mainImage, className: "img-responsive", alt: "" }),
+        React.createElement("img", { itemprop: "image", src: mainImage, className: "img-responsive", alt: "" }),
         React.createElement(
           "div",
           { className: "blog-text" },
           React.createElement(
             "h5",
-            null,
+            { itemprop: "name" },
             title
           ),
           React.createElement("span", { dangerouslySetInnerHTML: { __html: [contentHtml] } }),
