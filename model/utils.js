@@ -187,7 +187,7 @@ Utils = (function() {
       var arrayOptions = options.split("&");
       var length = (arrayOptions != null ? arrayOptions.length : 0);
       for (var i = 0; i < length; i++) {
-        var option = options[i];
+        var option = arrayOptions[i];
         var arrayOption = option.split("=");
         var optionName = arrayOption[0];
         var optionValue = arrayOption[1];
