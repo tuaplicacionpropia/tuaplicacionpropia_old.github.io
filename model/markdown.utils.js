@@ -44,3 +44,55 @@ showdown.extension('adaptmd', function () {
 showdown.setFlavor('github');
 //converter.setFlavor('github');
 showdown.setOption('tables', true);
+
+function showdown_convert (mdtext) {
+  var result = null;
+  //var converter = new showdown.Converter();
+  var converter = new showdown.Converter({ extensions: ['adaptmd']});
+  converter.setFlavor('github');
+  converter.setOption('tables', true);
+  result = converter.makeHtml(mdtext);
+  return result;
+}
+
+function remarkable_convert (mdtext) {
+  var result = null;
+
+  var md = new Remarkable();
+  md.set({
+    html: true,
+    breaks: true,
+    xhtmlOut: true,
+    linkTarget: '_blank',
+  });
+
+  md.renderer.rules.paragraph_open = (function() {
+    var original = md.renderer.rules.paragraph_open;
+    return function() {
+      var result = null;
+      var p = original.apply(this, arguments);
+      if (p == '<p>') {
+        result = '<p align="justify">';
+      }
+      else {
+        result = p;
+      }
+      return result;
+    };
+  })();
+
+  md.renderer.rules.image = (function() {
+    var original = md.renderer.rules.image;
+    return function() {
+      var result = null;
+      var img = original.apply(this, arguments);
+      var classImg = ' class="img-responsive2"';
+      result = img.substring(0, 4) + classImg + img.substring(4);
+      return result;
+    };
+  })();
+
+  result = md.render(mdtext);
+
+  return result;
+}

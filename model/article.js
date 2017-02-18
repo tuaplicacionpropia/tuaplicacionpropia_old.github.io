@@ -174,11 +174,8 @@ Article = (function() {
 
   Article.prototype.getContentHtml = function() {
     if (this.contentHtml == null && this.content != null) {
-      //var converter = new showdown.Converter();
-      var converter = new showdown.Converter({ extensions: ['adaptmd']});
-      converter.setFlavor('github');
-      converter.setOption('tables', true);
-      this.contentHtml = converter.makeHtml(this.content);
+      //this.contentHtml = showdown_convert(this.content);
+      this.contentHtml = remarkable_convert(this.content);
     }
 //      console.log('>>>>>>>>>>>>>>>><content');
 //      console.log(this.content);
