@@ -17,8 +17,11 @@ Para aprender sobre markdown mediante un editor online hacer click [aquí][remar
 [tutorial_plugins]: https://sosuke.com/writing-custom-extensions-for-the-remarkable-javascript-markdown-parser/?linkedin
 
 
-
+![Minion](https://octodex.github.com/images/minion.png)
 ![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
 
+
+![Alt text][id]
+[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
 
  '''
