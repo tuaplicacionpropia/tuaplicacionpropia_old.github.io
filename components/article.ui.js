@@ -491,7 +491,7 @@ var ArticleUI = React.createClass({
 
     return React.createElement(
       "div",
-      { className: "tc-ch business" },
+      { itemScope: true, itemType: "http://schema.org/Product", className: "tc-ch business" },
       React.createElement(
         "div",
         { className: " blog-grid2" },
