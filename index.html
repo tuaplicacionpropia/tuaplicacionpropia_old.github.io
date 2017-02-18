@@ -82,7 +82,7 @@ https://github.com/GoogleChrome/samples/tree/gh-pages/web-application-manifest
 <!--
 https://github.com/chjj/marked/
 -->
-
+<!--
 <script>
     document.write('<meta itemprop="name" content="AddThis Tour yyyyyy" /> ');
 
@@ -90,6 +90,15 @@ https://github.com/chjj/marked/
 
     document.write('<meta itemprop="image" content="http://i2.ytimg.com/vi/1F7DKyFt5pY/default.jpg" />');
 </script>
+-->
+
+<script >
+  window.___gcfg = {
+    lang: 'zh-CN',
+    parsetags: 'onload'
+  };
+</script>
+<script src="https://apis.google.com/js/client:platform.js" async defer></script>
 
   </head>
   <body class="index-page">
@@ -100,12 +109,32 @@ https://github.com/chjj/marked/
   <p itemprop="description">Shiny trinkets are shiny.</p>
 </body>
 -->
+<!--
 <div itemscope="" itemtype="http://schema.org/Article">
  <img itemprop="image" src="images/fs_python_real.jpg" class="img-responsive" alt="" />
  <p>PERICO</p>
  <h1 itemprop="name">FS implementado en Python</h1>
  <h2 itemprop="articleBody">DESCRIPTION: FS implementado en Python</h2>
 </div>
+-->
+
+<div id="sharePost"></div>
+<script>
+  var options = {
+    contenturl: 'https://plus.google.com/pages/',
+    contentdeeplinkid: '/pages',
+    clientid: 'xxxx.apps.googleusercontent.com',
+    cookiepolicy: 'single_host_origin',
+    prefilltext: 'Create your Google+ Page too!',
+    calltoactionlabel: 'CREATE',
+    calltoactionurl: 'http://plus.google.com/pages/create',
+    calltoactiondeeplinkid: '/pages/create'
+  };
+  // Call the render method when appropriate within your app to display
+  // the button.
+  gapi.interactivepost.render('sharePost', options);
+</script>
+
     <div id="main">
     </div>
 
