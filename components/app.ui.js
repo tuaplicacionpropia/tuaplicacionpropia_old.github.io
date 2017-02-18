@@ -197,11 +197,13 @@ var AppUI = React.createClass({
   },
 
   _openMenu: function (menuitem) {
+    this.state.dao.selectedPost = null;
     this.state.dao.selectMenu(menuitem.id);
     //alert(menuitem);
   },
 
   _openHome: function (menuitem) {
+    this.state.dao.selectedPost = null;
     this.state.dao.selectMenu(null);
     //alert(menuitem);
   },
