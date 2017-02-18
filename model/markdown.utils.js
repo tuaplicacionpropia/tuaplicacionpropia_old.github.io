@@ -86,7 +86,7 @@ function remarkable_convert (mdtext) {
     return function() {
       var result = null;
       var img = original.apply(this, arguments);
-      var classImg = ' class="img-responsive2"';
+      var classImg = ' class="img-responsive"';
       result = img.substring(0, 4) + classImg + img.substring(4);
       return result;
     };
