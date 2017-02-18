@@ -484,8 +484,10 @@ var AppUI = React.createClass({
 
   _openPost: function (post) {
     $('meta[itemprop=image]').attr('content', 'http://tuaplicacionpropia.com/images/banner1.jpg');
+    var newHREF = '?post=' + post['id'];
+    //window.location.href = newHREF;
+    history.pushState('', 'New Page Title', newHREF);
     this.state.dao.selectedPost = post;
-    window.location.href = '?post=' + post['id'];
     this.forceUpdate();
     //alert('periquito ' + post.title);
   },
