@@ -17,6 +17,8 @@ var AppUI = React.createClass({
     if (inputPost != null && inputPost.length > 0) {
       if (inputPost.endsWith(".md")) {
         dao.provPosts.load(inputPost, "post2Open", function () {
+          var post2Open = self.state.post2Open;
+          post2Open['id'] = inputPost;
           self._openPost(Article.createNew(self.state.post2Open));
         });
       } else {
@@ -483,6 +485,7 @@ var AppUI = React.createClass({
   _openPost: function (post) {
     $('meta[itemprop=image]').attr('content', 'http://tuaplicacionpropia.com/images/banner1.jpg');
     this.state.dao.selectedPost = post;
+    window.location.href = '?post=' + post['id'];
     this.forceUpdate();
     //alert('periquito ' + post.title);
   },

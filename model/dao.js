@@ -54,13 +54,18 @@ Dao = (function() {
       }
 
       self.app.setState({'serverPosts': null});
+      self.app.setState({'serverPostsArticles': null});
       if (articles.length > 0) {
+        self.app.setState({'serverPostsArticles': articles});
         self.provPosts.loadArray(articles, 'serverPosts', function () {
           var posts = [];
           var serverPosts = self.app.state.serverPosts;
+          var serverPostsArticles = self.app.state.serverPostsArticles;
           var length = (serverPosts != null ? serverPosts.length : 0);
           for (var i = 0; i < length; i++) {
             var serverPost = serverPosts[i];
+            var serverPostArticle = serverPostsArticles[i];
+            serverPost['id'] = serverPostArticle;
             posts.push(Article.createNew(serverPost));
           }
           self.app.setState({complete: true, 'posts': posts});
