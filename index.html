@@ -150,15 +150,22 @@ https://github.com/chjj/marked/
 
   </head>
   <body class="index-page">
-<div itemscope="" itemtype="http://schema.org/Article" style="display: none;">
+<div id="sharegplus" itemscope="" itemtype="http://schema.org/Article" style="display: none;">
+<!--
  <img itemprop="image" src="images/fs_python_real.jpg" class="img-responsive" alt="" />
  <p>PERICO</p>
  <h1 id="namegplus" itemprop="name">FS implementado en Python</h1>
  <h2 itemprop="articleBody">DESCRIPTION: FS implementado en Python</h2>
+-->
 </div>
     <script>
       //_NAME_GPLUS = "HOLA";
-      document.getElementById("namegplus").innerHTML = _NAME_GPLUS;
+//      document.getElementById("namegplus").innerHTML = _NAME_GPLUS;
+    var ht = "";
+    ht += '<img itemprop="image" src="images/fs_python_real.jpg" class="img-responsive" alt="" />';
+    ht += '<h1 id="namegplus" itemprop="name">DYNAMIC</h1>';
+    ht += '<h2 itemprop="articleBody">DESCRIPTION: DYNAMIC</h2>';
+    document.getElementById("sharegplus").innerHTML = ht;
     </script>
 <!--
 <body itemscope itemtype="http://schema.org/Product">
