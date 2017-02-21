@@ -7,16 +7,16 @@ content:
 
 | URL | Muestra |
 | --- | ------- |
-| [URL][url01] | ![Muestra][img01] |
-| [URL][url02] | ![Muestra][img02] |
-| [URL][url03] | ![Muestra][img03] |
-| [URL][url04] | ![Muestra][img04] |
-| [URL][url05] | ![Muestra][img05] |
-| [URL][url06] | ![Muestra][img06] |
-| [URL][url07] | ![Muestra][img07] |
-| [URL][url08] | ![Muestra][img08] |
-| [URL][url09] | ![Muestra][img09] |
-| [URL][url10] | ![Muestra][img10] |
+| [URL][url01] | ![Muestra][img01 =x240] |
+| [URL][url02] | ![Muestra][img02 =x240] |
+| [URL][url03] | ![Muestra][img03 =x240] |
+| [URL][url04] | ![Muestra][img04 =x240] |
+| [URL][url05] | ![Muestra][img05 =x240] |
+| [URL][url06] | ![Muestra][img06 =x240] |
+| [URL][url07] | ![Muestra][img07 =x240] |
+| [URL][url08] | ![Muestra][img08 =x240] |
+| [URL][url09] | ![Muestra][img09 =x240] |
+| [URL][url10] | ![Muestra][img10 =x240] |
 
 
 Se puede obtener más muestras en [Freepik][FREEPIK_HOME].
