@@ -33,7 +33,7 @@ https://plus.google.com/share?url=tuaplicacionpropia.com
 <meta itemprop="description" content="This is the greatest site ever">
 <meta itemprop="image" content="https://i.blogs.es/9b5981/holographic-universe/1366_2000.jpg">
 -->
-<meta itemprop="name" content="My Cool Article">
+<meta id="titlegplus" itemprop="name" content="My Cool Article">
 
 <!--
 <meta itemprop="name" content="AddThis Tour zzzzzzzzzzzzz" /> 
@@ -157,7 +157,9 @@ https://github.com/chjj/marked/
       _MI_VARIABLE_PERICO = "que pasa";
       var params = Utils.getParamsGET();
       var valuePerico = params['perico'];
-
+//var metas = document.getElementsByTagName("meta");
+      var eTitle = document.getElementById("titlegplus");
+      eTitle.setAttribute("content","new description");
       //document.write('<meta itemprop="og:title" content="' + valuePerico + '" />');
 
     </script>
@@ -284,7 +286,7 @@ https://github.com/chjj/marked/
   data-cookiepolicy="none"
   data-prefilltext=">>>>Engage your users today, create a Google+ page for your business."
   data-calltoactionurl="http://tuaplicacionpropia.com/?post=www/consejos_posts.md">
-  Tell your friends11
+  Tell your friends12
 </button>
 
 
