@@ -173,6 +173,17 @@ https://github.com/chjj/marked/
 
     </script>
 -->
+
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script >
+  window.___gcfg = {
+    lang: 'zh-CN',
+    parsetags: 'onload'
+  };
+    </script>
+    <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+
   </head>
   <body class="index-page">
 <!--
@@ -249,16 +260,9 @@ https://github.com/chjj/marked/
     <script type="text/javascript" src="components/main.ui.js"></script>
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5891b1502427d071"></script> 
 
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script >
-  window.___gcfg = {
-    lang: 'zh-CN',
-    parsetags: 'onload'
-  };
-    </script>
-    <script src="https://apis.google.com/js/client:platform.js" async defer></script>
 <div id="sharePost"></div>
 <script>
+window.onload = function(){
   var options = {
     contenturl: 'https://plus.google.com/pages/',
     contentdeeplinkid: '/pages',
@@ -272,6 +276,8 @@ https://github.com/chjj/marked/
   // Call the render method when appropriate within your app to display
   // the button.
   gapi.interactivepost.render('sharePost', options);
+};
+
 </script>
 
 <!--
