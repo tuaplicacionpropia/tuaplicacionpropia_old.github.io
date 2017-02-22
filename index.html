@@ -249,6 +249,31 @@ https://github.com/chjj/marked/
     <script type="text/javascript" src="components/main.ui.js"></script>
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5891b1502427d071"></script> 
 
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script >
+  window.___gcfg = {
+    lang: 'zh-CN',
+    parsetags: 'onload'
+  };
+    </script>
+    <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+<div id="sharePost"></div>
+<script>
+  var options = {
+    contenturl: 'https://plus.google.com/pages/',
+    contentdeeplinkid: '/pages',
+    clientid: 'xxxx.apps.googleusercontent.com',
+    cookiepolicy: 'single_host_origin',
+    prefilltext: 'Create your Google+ Page too!',
+    calltoactionlabel: 'CREATE',
+    calltoactionurl: 'http://plus.google.com/pages/create',
+    calltoactiondeeplinkid: '/pages/create'
+  };
+  // Call the render method when appropriate within your app to display
+  // the button.
+  gapi.interactivepost.render('sharePost', options);
+</script>
+
 <!--
 https://github.com/jprichardson/string.js
 https://github.com/js-joda/js-joda
