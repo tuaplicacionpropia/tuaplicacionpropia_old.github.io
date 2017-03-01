@@ -195,7 +195,9 @@ Article = (function() {
 
     var nodeContent2 = $.parseHTML(contentHtml);
     var nodeContent = $(nodeContent2).filter("p").get(0);
-    var result = nodeContent.outerHTML;
+    if (nodeContent != null && nodeContent != undefined) {
+      var result = nodeContent.outerHTML;
+    }
     return result;
   };
 
