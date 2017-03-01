@@ -113,7 +113,7 @@ var ArticleUI = React.createClass({
             null,
             React.createElement(
               "a",
-              { href: "#", className: "facebook-1 twitter" },
+              { href: "https://plus.google.com/share?url=YOUR_URL_HERE", className: "facebook-1 twitter", target: "_blank" },
               " "
             )
           ),

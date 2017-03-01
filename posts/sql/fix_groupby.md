@@ -13,7 +13,7 @@ SELECT tTwo.* FROM (SELECT notUnique, MAX(id) AS mid FROM t GROUP BY notUnique) 
 
 
 
-Imaginemos que queremos conocer la importe total anual de todas las facturas de nuestros clientes que pueden cambiar de nombre de titular pero no de cif y solo debemos agrupar por cif.
+Imaginemos que queremos conocer el importe total anual de todas las facturas de nuestros clientes que pueden cambiar de nombre de titular pero no de cif y solo debemos agrupar por cif.
 El SQL siguiente funciona:
 ```md
 SELECT FACTURA.cif, SUM(FACTURA.importe) as total

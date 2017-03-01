@@ -1,4 +1,4 @@
-title: ¿Penas del joven Werther ?
+title: ¿Penas del joven Werther?
 mainImage: 5.jpg
 content: 
  '''
