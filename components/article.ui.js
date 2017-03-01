@@ -90,6 +90,11 @@ var ArticleUI = React.createClass({
     var numViews = null;
     var numViews = numViews != null ? numViews : 0;
 
+    var postId = article.getId();
+    var postId = postId != null ? postId : "";
+
+    var gplusUrl = "https://plus.google.com/share?url=" + postId;
+
     return React.createElement(
       "span",
       null,
@@ -113,7 +118,7 @@ var ArticleUI = React.createClass({
             null,
             React.createElement(
               "a",
-              { href: "https://plus.google.com/share?url=YOUR_URL_HERE", className: "facebook-1 twitter", target: "_blank" },
+              { href: gplusUrl, className: "facebook-1 twitter", target: "_blank" },
               " "
             )
           ),
