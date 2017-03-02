@@ -148,8 +148,8 @@ Dao = (function() {
             var idPost = filename;
             if (idPost.startsWith('posts/')) {
               idPost = idPost.substring('posts/'.length);
+              idPosts.push(idPost);
             }
-            idPosts.push(idPost);
             //if (i > 2) {
             //  break;
             //}
