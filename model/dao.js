@@ -155,7 +155,23 @@ Dao = (function() {
             //}
           }
           if (idPosts.length > 0) {
-            self.provPosts.loadArray(idPosts, "posts");
+//            self.provPosts.loadArray(idPosts, "posts");
+            self.provPosts.loadArray(idPosts, "serverPosts", function () {
+              
+          var posts = [];
+          var serverPosts = self.app.state.serverPosts;
+          var serverPostsArticles = idPosts;
+          var length = (serverPosts != null ? serverPosts.length : 0);
+          for (var i = 0; i < length; i++) {
+            var serverPost = serverPosts[i];
+            var serverPostArticle = serverPostsArticles[i];
+            serverPost['id'] = serverPostArticle;
+            posts.push(Article.createNew(serverPost));
+          }
+          self.app.setState({complete: true, 'posts': posts});
+
+
+            });
 /*
             self.loadArray(idPosts, "lastPostsPlain", function () {
               var lastPostsPlain = self.app.state.lastPostsPlain;
