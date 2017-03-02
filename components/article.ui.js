@@ -93,8 +93,9 @@ var ArticleUI = React.createClass({
     var postId = article.getId();
     var postId = postId != null ? postId : "";
 
-    var baseurl = "http://tuaplicacionpropia.com/?post=";
-    var gplusUrl = "https://plus.google.com/share?url=" + baseurl + postId;
+    var baseurl = "http://tuaplicacionpropia.com/social/";
+    var basepostId = postId.substring(0, postId.lastIndexOf(".")) + ".html";
+    var gplusUrl = "https://plus.google.com/share?url=" + baseurl + basepostId;
 
     return React.createElement(
       "span",
